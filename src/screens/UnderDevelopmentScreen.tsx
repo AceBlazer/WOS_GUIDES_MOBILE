@@ -7,6 +7,7 @@ import {
   StatusBar,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useTranslation } from 'react-i18next';
 import { theme } from '../styles/theme';
 
 interface UnderDevelopmentScreenProps {
@@ -15,6 +16,7 @@ interface UnderDevelopmentScreenProps {
 }
 
 function UnderDevelopmentScreen({ title, subtitle }: UnderDevelopmentScreenProps) {
+  const { t } = useTranslation();
   const isDarkMode = useColorScheme() === 'dark';
 
   return (
@@ -39,15 +41,15 @@ function UnderDevelopmentScreen({ title, subtitle }: UnderDevelopmentScreenProps
           </View>
 
           <Text style={styles.developmentTitle}>
-            🚧 CONSTRUCTION ZONE
+            {t('underDevelopment.title')}
           </Text>
 
           <Text style={styles.developmentText}>
-            Our engineers are building this survival feature in the harsh conditions of the frozen wasteland.
+            {t('underDevelopment.message')}
           </Text>
 
           <Text style={styles.developmentSubText}>
-            🔥 Stay warm, survivor!
+            {t('underDevelopment.subtitle')}
           </Text>
         </View>
       </View>

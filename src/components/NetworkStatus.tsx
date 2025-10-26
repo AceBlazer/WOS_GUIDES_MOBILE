@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, Animated } from 'react-native';
 import NetInfo from '@react-native-community/netinfo';
+import { useTranslation } from 'react-i18next';
 
 const NetworkStatus = () => {
+  const { t } = useTranslation();
   const [isOffline, setIsOffline] = useState(false);
   const [slideAnim] = useState(new Animated.Value(-50));
 
@@ -46,7 +48,7 @@ const NetworkStatus = () => {
       ]}
     >
       <View style={styles.bar}>
-        <Text style={styles.text}>No Internet Connection</Text>
+        <Text style={styles.text}>{t('common.noInternet')}</Text>
       </View>
     </Animated.View>
   );

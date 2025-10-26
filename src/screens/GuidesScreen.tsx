@@ -11,8 +11,10 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 import { theme } from '../styles/theme';
 import { useCategories } from '../hooks/useApi';
+import CompactLanguageSelector from '../components/CompactLanguageSelector';
 import type { GuidesStackNavigationProp } from '../types/navigation';
 import type { Category } from '../types/api';
 
@@ -27,6 +29,7 @@ const CATEGORY_COLORS = [
 ];
 
 function GuidesScreen() {
+  const { t } = useTranslation();
   const navigation = useNavigation<GuidesStackNavigationProp>();
   const { data: categories, isLoading, error, refetch, isRefetching } = useCategories();
 
@@ -46,14 +49,19 @@ function GuidesScreen() {
       <StatusBar barStyle="light-content" backgroundColor={theme.colors.background} />
 
       <View style={styles.header}>
-        <Text style={styles.title}>
-          ❄️ Survival Guides
-        </Text>
+        <View style={styles.headerTop}>
+          <View style={styles.headerTitleContainer}>
+            <Text style={styles.title}>
+              {t('guides.title')}
+            </Text>
+          </View>
+          <CompactLanguageSelector />
+        </View>
         <Text style={styles.subtitle}>
-          Build Your Shelter • Survive the Frost
+          {t('guides.subtitle')}
         </Text>
         <Text style={styles.headerDescription}>
-          Essential knowledge to help your survivors thrive in the eternal winter
+          {t('guides.description')}
         </Text>
       </View>
 
@@ -71,27 +79,24 @@ function GuidesScreen() {
       >
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>
-            📖 Survival Knowledge
-          </Text>
-          <Text style={styles.description}>
-            Learn from experienced survivors and master the strategies needed to build a thriving shelter in the endless winter.
+            {t('guides.sectionTitle')}
           </Text>
 
           {isLoading && !isRefetching ? (
             <View style={styles.loadingContainer}>
               <ActivityIndicator size="large" color={theme.colors.primary} />
-              <Text style={styles.loadingText}>Loading categories...</Text>
+              <Text style={styles.loadingText}>{t('guides.loadingCategories')}</Text>
             </View>
           ) : error ? (
             <View style={styles.errorContainer}>
               <Text style={styles.errorText}>
-                ❌ Failed to load categories
+                {t('guides.failedToLoad')}
               </Text>
               <Text style={styles.errorSubText}>
                 {error instanceof Error ? error.message : 'An error occurred'}
               </Text>
               <TouchableOpacity style={styles.retryButton} onPress={() => refetch()}>
-                <Text style={styles.retryButtonText}>🔄 Retry</Text>
+                <Text style={styles.retryButtonText}>{t('common.retry')}</Text>
               </TouchableOpacity>
             </View>
           ) : categories && categories.length > 0 ? (
@@ -120,8 +125,7 @@ function GuidesScreen() {
             </View>
           ) : (
             <View style={styles.emptyContainer}>
-              <Text style={styles.emptyText}>📭 No categories available</Text>
-              <Text style={styles.emptySubText}>Check back later for new guides</Text>
+              <Text style={styles.emptyText}>{t('guides.noCategories')}</Text>
             </View>
           )}
         </View>
@@ -141,6 +145,16 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     borderBottomColor: theme.colors.border,
     backgroundColor: theme.colors.backgroundLight,
+  },
+  headerTop: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
+    marginBottom: theme.spacing.xs,
+  },
+  headerTitleContainer: {
+    flex: 1,
   },
   title: {
     fontSize: theme.typography.sizes.heading,

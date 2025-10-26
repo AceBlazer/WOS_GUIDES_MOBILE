@@ -1,0 +1,81 @@
+{
+  "common": {
+    "loading": "Caricamento...",
+    "retry": "🔄 Riprova",
+    "back": "‹ Indietro",
+    "skip": "Salta",
+    "next": "Avanti",
+    "getStarted": "Inizia",
+    "noInternet": "Nessuna connessione Internet",
+    "restartRequired": "Riavvio richiesto",
+    "restartMessage": "L'app deve riavviarsi per applicare la modifica della direzione della lingua.",
+    "restartNow": "Riavvia ora"
+  },
+  "onboarding": {
+    "slide1": {
+      "title": "Benvenuto su WOS Guides",
+      "subtitle": "Il tuo compagno di sopravvivenza definitivo"
+    },
+    "slide2": {
+      "title": "Guide di sopravvivenza esperte",
+      "subtitle": "Impara dai migliori"
+    },
+    "slide3": {
+      "title": "Strumenti potenti",
+      "subtitle": "Automatizza e ottimizza"
+    },
+    "slide4": {
+      "title": "Sopravvivi alla terra desolata",
+      "subtitle": "Costruisci il tuo patrimonio"
+    }
+  },
+  "guides": {
+    "title": "❄️ Guide di sopravvivenza",
+    "subtitle": "Costruisci il tuo rifugio • Sopravvivi al gelo",
+    "description": "Conoscenze essenziali per sopravvivere nella dura terra desolata. Costruisci, difendi e prospera nell'apocalisse ghiacciata.",
+    "sectionTitle": "📖 Conoscenze di sopravvivenza",
+    "loadingCategories": "Caricamento categorie...",
+    "failedToLoad": "❌ Impossibile caricare le categorie",
+    "noCategories": "📭 Nessuna categoria disponibile",
+    "loadingGuides": "Caricamento guide...",
+    "failedToLoadGuides": "❌ Impossibile caricare le guide",
+    "noGuides": "📭 Nessuna guida disponibile",
+    "loadingGuide": "Caricamento guida...",
+    "failedToLoadGuide": "❌ Impossibile caricare la guida",
+    "guideNotFound": "📭 Guida non trovata"
+  },
+  "tools": {
+    "title": "🛠️ Strumenti di sopravvivenza",
+    "subtitle": "Migliora la gestione del tuo rifugio",
+    "autoClicker": {
+      "title": "🤖 Auto Clicker",
+      "description": "Automatizza le attività di tocco ripetitive con il nostro strumento di auto clicker avanzato",
+      "permissionTitle": "Autorizzazione di accessibilità richiesta",
+      "permissionMessage": "L'Auto Clicker necessita dell'autorizzazione di accessibilità per funzionare. Si prega di abilitarla nelle impostazioni.",
+      "permissionButton": "Apri impostazioni",
+      "permissionStatus": {
+        "granted": "✅ Autorizzazione concessa",
+        "denied": "❌ Autorizzazione richiesta"
+      }
+    },
+    "blacklistTracker": {
+      "title": "🚫 Tracker lista nera",
+      "description": "Traccia e gestisci i giocatori nella lista nera nel tuo rifugio"
+    },
+    "notifications": {
+      "title": "🔔 Notifiche push",
+      "description": "Rimani aggiornato con avvisi e notifiche in tempo reale"
+    }
+  },
+  "tabs": {
+    "guides": "Guide",
+    "tools": "Strumenti",
+    "shop": "Negozio",
+    "support": "Supporto"
+  },
+  "underDevelopment": {
+    "title": "🚧 In sviluppo",
+    "message": "Questa funzionalità è attualmente in sviluppo e sarà presto disponibile!",
+    "subtitle": "Rimani sintonizzato per gli aggiornamenti"
+  }
+}

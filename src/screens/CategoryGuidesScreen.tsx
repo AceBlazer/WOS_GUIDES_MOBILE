@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 import { theme } from '../styles/theme';
 import { useGuidesByCategory } from '../hooks/useApi';
 import type { GuidesStackNavigationProp, GuidesStackParamList } from '../types/navigation';
@@ -18,6 +19,7 @@ import type { Guide } from '../types/api';
 type CategoryGuidesRouteProp = RouteProp<GuidesStackParamList, 'CategoryGuides'>;
 
 function CategoryGuidesScreen() {
+  const { t } = useTranslation();
   const navigation = useNavigation<GuidesStackNavigationProp>();
   const route = useRoute<CategoryGuidesRouteProp>();
   const { categoryId, categoryName } = route.params;
@@ -49,7 +51,7 @@ function CategoryGuidesScreen() {
   const renderEmpty = () => (
     <View style={styles.emptyContainer}>
       <Text style={styles.emptyText}>
-        {error ? '❌ Failed to load guides' : '📭 No guides available'}
+        {error ? t('guides.failedToLoadGuides') : t('guides.noGuides')}
       </Text>
       {error && (
         <Text style={styles.errorText}>
@@ -57,7 +59,7 @@ function CategoryGuidesScreen() {
         </Text>
       )}
       <TouchableOpacity style={styles.retryButton} onPress={() => refetch()}>
-        <Text style={styles.retryButtonText}>🔄 Retry</Text>
+        <Text style={styles.retryButtonText}>{t('common.retry')}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -69,18 +71,15 @@ function CategoryGuidesScreen() {
           style={styles.backButton}
           onPress={() => navigation.goBack()}
         >
-          <Text style={styles.backButtonText}>‹ Back</Text>
+          <Text style={styles.backButtonText}>{t('common.back')}</Text>
         </TouchableOpacity>
         <Text style={styles.title}>{categoryName}</Text>
-        <Text style={styles.subtitle}>
-          {guides?.length || 0} {guides?.length === 1 ? 'Guide' : 'Guides'}
-        </Text>
       </View>
 
       {isLoading && !isRefetching ? (
         <View style={styles.loadingContainer}>
           <ActivityIndicator size="large" color={theme.colors.primary} />
-          <Text style={styles.loadingText}>Loading guides...</Text>
+          <Text style={styles.loadingText}>{t('guides.loadingGuides')}</Text>
         </View>
       ) : (
         <FlatList

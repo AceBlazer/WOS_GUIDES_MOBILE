@@ -1,0 +1,81 @@
+{
+  "common": {
+    "loading": "Lädt...",
+    "retry": "🔄 Wiederholen",
+    "back": "‹ Zurück",
+    "skip": "Überspringen",
+    "next": "Weiter",
+    "getStarted": "Loslegen",
+    "noInternet": "Keine Internetverbindung",
+    "restartRequired": "Neustart erforderlich",
+    "restartMessage": "Die App muss neu gestartet werden, um die Änderung der Sprachrichtung anzuwenden.",
+    "restartNow": "Jetzt neu starten"
+  },
+  "onboarding": {
+    "slide1": {
+      "title": "Willkommen bei WOS Guides",
+      "subtitle": "Ihr ultimativer Überlebensbegleiter"
+    },
+    "slide2": {
+      "title": "Experten-Überlebensführer",
+      "subtitle": "Lernen Sie von den Besten"
+    },
+    "slide3": {
+      "title": "Leistungsstarke Werkzeuge",
+      "subtitle": "Automatisieren und optimieren"
+    },
+    "slide4": {
+      "title": "Überlebe im Ödland",
+      "subtitle": "Baue dein Vermächtnis auf"
+    }
+  },
+  "guides": {
+    "title": "❄️ Überlebensführer",
+    "subtitle": "Baue deine Unterkunft • Überlebe den Frost",
+    "description": "Wesentliches Wissen zum Überleben im harten Ödland. Baue, verteidige und gedeihe in der gefrorenen Apokalypse.",
+    "sectionTitle": "📖 Überlebenswissen",
+    "loadingCategories": "Lade Kategorien...",
+    "failedToLoad": "❌ Kategorien konnten nicht geladen werden",
+    "noCategories": "📭 Keine Kategorien verfügbar",
+    "loadingGuides": "Lade Anleitungen...",
+    "failedToLoadGuides": "❌ Anleitungen konnten nicht geladen werden",
+    "noGuides": "📭 Keine Anleitungen verfügbar",
+    "loadingGuide": "Lade Anleitung...",
+    "failedToLoadGuide": "❌ Anleitung konnte nicht geladen werden",
+    "guideNotFound": "📭 Anleitung nicht gefunden"
+  },
+  "tools": {
+    "title": "🛠️ Überlebenswerkzeuge",
+    "subtitle": "Verbessern Sie Ihre Schutzverwaltung",
+    "autoClicker": {
+      "title": "🤖 Auto-Clicker",
+      "description": "Automatisieren Sie wiederholende Tipp-Aufgaben mit unserem fortschrittlichen Auto-Clicker-Tool",
+      "permissionTitle": "Barrierefreiheitsberechtigung erforderlich",
+      "permissionMessage": "Der Auto-Clicker benötigt eine Barrierefreiheitsberechtigung, um zu funktionieren. Bitte aktivieren Sie sie in den Einstellungen.",
+      "permissionButton": "Einstellungen öffnen",
+      "permissionStatus": {
+        "granted": "✅ Berechtigung erteilt",
+        "denied": "❌ Berechtigung erforderlich"
+      }
+    },
+    "blacklistTracker": {
+      "title": "🚫 Blacklist-Tracker",
+      "description": "Verfolgen und verwalten Sie auf die schwarze Liste gesetzte Spieler in Ihrer Unterkunft"
+    },
+    "notifications": {
+      "title": "🔔 Push-Benachrichtigungen",
+      "description": "Bleiben Sie mit Echtzeit-Warnungen und Benachrichtigungen auf dem Laufenden"
+    }
+  },
+  "tabs": {
+    "guides": "Guides",
+    "tools": "Werkzeuge",
+    "shop": "Shop",
+    "support": "Support"
+  },
+  "underDevelopment": {
+    "title": "🚧 In Entwicklung",
+    "message": "Diese Funktion befindet sich derzeit in der Entwicklung und wird bald verfügbar sein!",
+    "subtitle": "Bleiben Sie dran für Updates"
+  }
+}

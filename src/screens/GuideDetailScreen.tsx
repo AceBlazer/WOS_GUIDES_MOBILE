@@ -10,6 +10,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import { WebView } from 'react-native-webview';
+import { useTranslation } from 'react-i18next';
 import { theme } from '../styles/theme';
 import { useGuide } from '../hooks/useApi';
 import type { GuidesStackNavigationProp, GuidesStackParamList } from '../types/navigation';
@@ -17,6 +18,7 @@ import type { GuidesStackNavigationProp, GuidesStackParamList } from '../types/n
 type GuideDetailRouteProp = RouteProp<GuidesStackParamList, 'GuideDetail'>;
 
 function GuideDetailScreen() {
+  const { t } = useTranslation();
   const navigation = useNavigation<GuidesStackNavigationProp>();
   const route = useRoute<GuideDetailRouteProp>();
   const { guideId, guideTitle } = route.params;
@@ -132,13 +134,13 @@ function GuideDetailScreen() {
             style={styles.backButton}
             onPress={() => navigation.goBack()}
           >
-            <Text style={styles.backButtonText}>‹ Back</Text>
+            <Text style={styles.backButtonText}>{t('common.back')}</Text>
           </TouchableOpacity>
           <Text style={styles.title} numberOfLines={2}>{guideTitle}</Text>
         </View>
         <View style={styles.loadingContainer}>
           <ActivityIndicator size="large" color={theme.colors.primary} />
-          <Text style={styles.loadingText}>Loading guide...</Text>
+          <Text style={styles.loadingText}>{t('guides.loadingGuide')}</Text>
         </View>
       </SafeAreaView>
     );
@@ -152,17 +154,17 @@ function GuideDetailScreen() {
             style={styles.backButton}
             onPress={() => navigation.goBack()}
           >
-            <Text style={styles.backButtonText}>‹ Back</Text>
+            <Text style={styles.backButtonText}>{t('common.back')}</Text>
           </TouchableOpacity>
           <Text style={styles.title} numberOfLines={2}>{guideTitle}</Text>
         </View>
         <View style={styles.errorContainer}>
-          <Text style={styles.errorTitle}>❌ Failed to load guide</Text>
+          <Text style={styles.errorTitle}>{t('guides.failedToLoadGuide')}</Text>
           <Text style={styles.errorText}>
             {error instanceof Error ? error.message : 'An error occurred'}
           </Text>
           <TouchableOpacity style={styles.retryButton} onPress={() => refetch()}>
-            <Text style={styles.retryButtonText}>🔄 Retry</Text>
+            <Text style={styles.retryButtonText}>{t('common.retry')}</Text>
           </TouchableOpacity>
         </View>
       </SafeAreaView>
@@ -177,12 +179,12 @@ function GuideDetailScreen() {
             style={styles.backButton}
             onPress={() => navigation.goBack()}
           >
-            <Text style={styles.backButtonText}>‹ Back</Text>
+            <Text style={styles.backButtonText}>{t('common.back')}</Text>
           </TouchableOpacity>
           <Text style={styles.title} numberOfLines={2}>{guideTitle}</Text>
         </View>
         <View style={styles.errorContainer}>
-          <Text style={styles.errorTitle}>📭 Guide not found</Text>
+          <Text style={styles.errorTitle}>{t('guides.guideNotFound')}</Text>
         </View>
       </SafeAreaView>
     );
@@ -195,7 +197,7 @@ function GuideDetailScreen() {
           style={styles.backButton}
           onPress={() => navigation.goBack()}
         >
-          <Text style={styles.backButtonText}>‹ Back</Text>
+          <Text style={styles.backButtonText}>{t('common.back')}</Text>
         </TouchableOpacity>
         <Text style={styles.title} numberOfLines={2}>{guide.title}</Text>
       </View>

@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Text, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useTranslation } from 'react-i18next';
 import { theme } from '../styles/theme';
 
 import type { RootTabParamList, GuidesStackParamList, ToolsStackParamList } from '../types/navigation';
@@ -112,6 +113,7 @@ function ToolsStackNavigator() {
 
 // Main App Navigator
 function AppNavigator() {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
 
   return (
@@ -139,23 +141,34 @@ function AppNavigator() {
         headerShown: false,
       })}
     >
-      <Tab.Screen name="Guides" component={GuidesStackNavigator} />
-      <Tab.Screen name="Tools" component={ToolsStackNavigator} />
-      <Tab.Screen name="Shop">
+      <Tab.Screen
+        name="Guides"
+        component={GuidesStackNavigator}
+        options={{ tabBarLabel: t('tabs.guides') }}
+      />
+      <Tab.Screen
+        name="Tools"
+        component={ToolsStackNavigator}
+        options={{ tabBarLabel: t('tabs.tools') }}
+      />
+      <Tab.Screen
+        name="Shop"
+        options={{ tabBarLabel: t('tabs.shop') }}
+      >
         {() => (
           <UnderDevelopmentScreen
-            title="Shop"
+            title={t('tabs.shop')}
             subtitle="Coming Soon"
           />
         )}
       </Tab.Screen>
       <Tab.Screen
         name="SupportDevs"
-        options={{ tabBarLabel: 'Support Devs' }}
+        options={{ tabBarLabel: t('tabs.support') }}
       >
         {() => (
           <UnderDevelopmentScreen
-            title="Support Devs"
+            title={t('tabs.support')}
             subtitle="Help Us Grow"
           />
         )}

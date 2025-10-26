@@ -14,6 +14,7 @@ import AnimatedSplash from './src/components/AnimatedSplash';
 import { queryClient, persister } from './src/config/queryClient';
 import { OneSignal } from 'react-native-onesignal';
 import { ONESIGNAL_APP_ID } from '@env';
+import './src/i18n'; // Initialize i18n (includes RTL setup)
 
 // Initialize OneSignal
 OneSignal.initialize(ONESIGNAL_APP_ID);

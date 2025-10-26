@@ -11,11 +11,13 @@ import {
   AppState,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useTranslation } from 'react-i18next';
 import { theme } from '../styles/theme';
 
 const { AutoClickerModule } = NativeModules;
 
 function AutoClickerScreen() {
+  const { t } = useTranslation();
   const isDarkMode = useColorScheme() === 'dark';
   const [hasOverlayPermission, setHasOverlayPermission] = useState(false);
   const [hasAccessibilityPermission, setHasAccessibilityPermission] = useState(false);
@@ -71,11 +73,11 @@ function AutoClickerScreen() {
     try {
       await AutoClickerModule.requestAccessibilityService();
       Alert.alert(
-        'Accessibility Service Required',
-        'Please enable the Auto Clicker accessibility service in the settings and return to the app',
+        t('tools.autoClicker.permissionTitle'),
+        t('tools.autoClicker.permissionMessage'),
         [
           {
-            text: 'OK',
+            text: t('tools.autoClicker.permissionButton'),
             onPress: () => {
               // Check permissions again after user returns
               setTimeout(() => checkPermissions(), 1000);

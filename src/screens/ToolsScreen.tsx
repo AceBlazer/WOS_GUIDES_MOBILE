@@ -9,10 +9,13 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 import { theme } from '../styles/theme';
+import CompactLanguageSelector from '../components/CompactLanguageSelector';
 import type { ToolsStackNavigationProp, ToolsStackParamList } from '../types/navigation';
 
 function ToolsScreen() {
+  const { t } = useTranslation();
   const isDarkMode = useColorScheme() === 'dark';
   const navigation = useNavigation<ToolsStackNavigationProp>();
 
@@ -25,49 +28,44 @@ function ToolsScreen() {
       <StatusBar barStyle="dark-content" backgroundColor={theme.colors.background} />
 
       <View style={styles.header}>
-        <Text style={styles.title}>
-          🛠️ Survival Tools
-        </Text>
+        <View style={styles.headerTop}>
+          <View style={styles.headerTitleContainer}>
+            <Text style={styles.title}>
+              {t('tools.title')}
+            </Text>
+          </View>
+          <CompactLanguageSelector />
+        </View>
         <Text style={styles.subtitle}>
-          Enhance Your Shelter Management
-        </Text>
-        <Text style={styles.headerDescription}>
-          Helpful utilities to optimize your survival experience
+          {t('tools.subtitle')}
         </Text>
       </View>
 
       <View style={styles.content}>
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>
-            ⚙️ Utility Tools
-          </Text>
-          <Text style={styles.description}>
-            Practical tools to help you manage your shelter more efficiently and stay ahead in the survival game.
-          </Text>
-
           <View style={styles.buttonContainer}>
             <TouchableOpacity
               style={[styles.button, styles.autoClickerButton]}
               onPress={() => navigateToScreen('AutoClicker')}
             >
-              <Text style={styles.buttonText}>🤖 Auto Clicker</Text>
-              <Text style={styles.buttonSubText}>Automate repetitive tapping tasks</Text>
+              <Text style={styles.buttonText}>{t('tools.autoClicker.title')}</Text>
+              <Text style={styles.buttonSubText}>{t('tools.autoClicker.description')}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
               style={[styles.button, styles.blacklistButton]}
               onPress={() => navigateToScreen('BlacklistTracker')}
             >
-              <Text style={styles.buttonText}>📝 Player Tracker</Text>
-              <Text style={styles.buttonSubText}>Keep track of allies and rivals</Text>
+              <Text style={styles.buttonText}>{t('tools.blacklistTracker.title')}</Text>
+              <Text style={styles.buttonSubText}>{t('tools.blacklistTracker.description')}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
               style={[styles.button, styles.notificationsButton]}
               onPress={() => navigateToScreen('Notifications')}
             >
-              <Text style={styles.buttonText}>🔔 Notifications</Text>
-              <Text style={styles.buttonSubText}>Game updates and reminders</Text>
+              <Text style={styles.buttonText}>{t('tools.notifications.title')}</Text>
+              <Text style={styles.buttonSubText}>{t('tools.notifications.description')}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -87,6 +85,16 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     borderBottomColor: theme.colors.border,
     backgroundColor: theme.colors.backgroundLight,
+  },
+  headerTop: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
+    marginBottom: theme.spacing.xs,
+  },
+  headerTitleContainer: {
+    flex: 1,
   },
   title: {
     fontSize: theme.typography.sizes.heading,

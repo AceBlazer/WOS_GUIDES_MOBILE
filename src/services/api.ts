@@ -1,5 +1,6 @@
 import { API_CONFIG } from '../config/api';
 import type { Category, Guide, ApiError, ApiResponse } from '../types/api';
+import i18n from '../i18n';
 
 class ApiService {
   private baseUrl: string;
@@ -23,6 +24,7 @@ class ApiService {
         signal: controller.signal,
         headers: {
           'Content-Type': 'application/json',
+          'Language': i18n.language || 'en',
           ...options?.headers,
         },
       });

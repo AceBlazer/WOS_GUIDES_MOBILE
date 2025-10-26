@@ -9,7 +9,9 @@ import {
 } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import PagerView from 'react-native-pager-view';
+import { useTranslation } from 'react-i18next';
 import { theme } from '../styles/theme';
+import LanguageSelector from './LanguageSelector';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
@@ -20,51 +22,48 @@ interface WelcomeSliderProps {
 interface SlideData {
   id: number;
   icon: string;
-  title: string;
-  subtitle: string;
-  description: string;
+  titleKey: string;
+  subtitleKey: string;
   backgroundColor: string;
 }
 
-const slides: SlideData[] = [
+const getSlides = (): SlideData[] => [
   {
     id: 1,
     icon: '❄️',
-    title: 'Welcome to WOS Guides',
-    subtitle: 'Your Ultimate Survival Companion',
-    description: 'Master the art of survival in the endless winter with our comprehensive guides and powerful tools.',
+    titleKey: 'onboarding.slide1.title',
+    subtitleKey: 'onboarding.slide1.subtitle',
     backgroundColor: '#E3F2FD',
   },
   {
     id: 2,
     icon: '📚',
-    title: 'Expert Survival Guides',
-    subtitle: 'Learn From the Best',
-    description: 'Access detailed strategies for events, R4/R5 tactics, and hidden tips to build the strongest shelter.',
+    titleKey: 'onboarding.slide2.title',
+    subtitleKey: 'onboarding.slide2.subtitle',
     backgroundColor: '#F1F8E9',
   },
   {
     id: 3,
     icon: '🛠️',
-    title: 'Powerful Tools',
-    subtitle: 'Automate & Optimize',
-    description: 'Use our auto clicker, player tracker, and notification system to stay ahead of the competition.',
+    titleKey: 'onboarding.slide3.title',
+    subtitleKey: 'onboarding.slide3.subtitle',
     backgroundColor: '#FFF3E0',
   },
   {
     id: 4,
     icon: '🏔️',
-    title: 'Survive the Wasteland',
-    subtitle: 'Build Your Legacy',
-    description: 'Ready to dominate the frozen world? Let\'s begin your journey to becoming the ultimate survivor!',
+    titleKey: 'onboarding.slide4.title',
+    subtitleKey: 'onboarding.slide4.subtitle',
     backgroundColor: '#E8F5E8',
   },
 ];
 
 function WelcomeSlider({ onComplete }: WelcomeSliderProps) {
+  const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState(0);
   const pagerRef = useRef<PagerView>(null);
   const insets = useSafeAreaInsets();
+  const slides = getSlides();
 
   const handleNext = () => {
     if (currentPage < slides.length - 1) {
@@ -92,10 +91,16 @@ function WelcomeSlider({ onComplete }: WelcomeSliderProps) {
         </View>
 
         <View style={styles.textContainer}>
-          <Text style={styles.title}>{slide.title}</Text>
-          <Text style={styles.subtitle}>{slide.subtitle}</Text>
-          <Text style={styles.description}>{slide.description}</Text>
+          <Text style={styles.title}>{t(slide.titleKey)}</Text>
+          <Text style={styles.subtitle}>{t(slide.subtitleKey)}</Text>
         </View>
+
+        {/* Show language selector only on first slide */}
+        {slide.id === 1 && (
+          <View style={styles.languageSelectorContainer}>
+            <LanguageSelector />
+          </View>
+        )}
       </View>
     </View>
   );
@@ -123,7 +128,7 @@ function WelcomeSlider({ onComplete }: WelcomeSliderProps) {
 
       <View style={styles.header}>
         <TouchableOpacity onPress={handleSkip} style={styles.skipButton}>
-          <Text style={styles.skipText}>Skip</Text>
+          <Text style={styles.skipText}>{t('common.skip')}</Text>
         </TouchableOpacity>
       </View>
 
@@ -141,7 +146,7 @@ function WelcomeSlider({ onComplete }: WelcomeSliderProps) {
 
         <TouchableOpacity onPress={handleNext} style={styles.nextButton}>
           <Text style={styles.nextButtonText}>
-            {currentPage === slides.length - 1 ? 'Get Started' : 'Next'}
+            {currentPage === slides.length - 1 ? t('common.getStarted') : t('common.next')}
           </Text>
         </TouchableOpacity>
       </View>
@@ -212,13 +217,10 @@ const styles = StyleSheet.create({
     marginBottom: theme.spacing.lg,
     letterSpacing: 0.3,
   },
-  description: {
-    fontSize: theme.typography.sizes.lg,
-    fontFamily: theme.typography.fontFamily.regular,
-    color: theme.colors.textSecondary,
-    textAlign: 'center',
-    lineHeight: 24,
-    paddingHorizontal: theme.spacing.md,
+  languageSelectorContainer: {
+    marginTop: theme.spacing.xxl,
+    alignItems: 'center',
+    width: '100%',
   },
   footer: {
     paddingHorizontal: theme.spacing.xl,
