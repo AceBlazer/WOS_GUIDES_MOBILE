@@ -84,6 +84,17 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+
+        // Read from .env file or use default values
+        def envFile = rootProject.file('../.env')
+        def envProps = new Properties()
+        if (envFile.exists()) {
+            envFile.withInputStream { envProps.load(it) }
+        }
+
+        // Add BuildConfig fields for environment variables
+        buildConfigField "String", "API_BASE_URL", "\"${envProps.getProperty('API_BASE_URL', 'http://localhost:3000')}\""
+        buildConfigField "String", "ONESIGNAL_APP_ID", "\"${envProps.getProperty('ONESIGNAL_APP_ID', '')}\""
     }
     signingConfigs {
         debug {
@@ -110,6 +121,12 @@ android {
 dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
+
+    // Add LocalBroadcastManager support
+    implementation("androidx.localbroadcastmanager:localbroadcastmanager:1.1.0")
+
+    // OneSignal
+    implementation project(':react-native-onesignal')
 
     if (hermesEnabled.toBoolean()) {
         implementation("com.facebook.react:hermes-android")

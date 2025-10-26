@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Outer glow/shadow -->
+    <item>
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="20dp"
+                android:startColor="#60FF1744"
+                android:centerColor="#40FF1744"
+                android:endColor="#00FF1744"/>
+            <size android:width="40dp" android:height="40dp"/>
+        </shape>
+    </item>
+
+    <!-- Outer ring with gradient -->
+    <item android:top="4dp" android:bottom="4dp" android:left="4dp" android:right="4dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="linear"
+                android:angle="135"
+                android:startColor="#FF1744"
+                android:centerColor="#F50057"
+                android:endColor="#C51162"/>
+            <stroke android:width="2dp" android:color="#FFFFFF"/>
+        </shape>
+    </item>
+
+    <!-- Middle transparent ring -->
+    <item android:top="8dp" android:bottom="8dp" android:left="8dp" android:right="8dp">
+        <shape android:shape="oval">
+            <stroke android:width="1dp" android:color="#80FFFFFF"/>
+            <solid android:color="#00000000"/>
+        </shape>
+    </item>
+
+    <!-- Inner circle -->
+    <item android:top="12dp" android:bottom="12dp" android:left="12dp" android:right="12dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="linear"
+                android:angle="135"
+                android:startColor="#FF1744"
+                android:endColor="#C51162"/>
+        </shape>
+    </item>
+
+    <!-- Center dot with glow -->
+    <item android:top="16dp" android:bottom="16dp" android:left="16dp" android:right="16dp">
+        <shape android:shape="oval">
+            <solid android:color="#FFFFFF"/>
+        </shape>
+    </item>
+</layer-list>

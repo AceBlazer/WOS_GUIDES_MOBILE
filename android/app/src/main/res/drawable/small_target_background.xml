@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Outer ring -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#FFFF4444" />
+            <stroke
+                android:width="1dp"
+                android:color="#FFFFFF" />
+        </shape>
+    </item>
+
+    <!-- Inner white circle -->
+    <item android:inset="6dp">
+        <shape android:shape="oval">
+            <solid android:color="#FFFFFF" />
+        </shape>
+    </item>
+
+    <!-- Center red dot -->
+    <item android:inset="8dp">
+        <shape android:shape="oval">
+            <solid android:color="#FFFF4444" />
+        </shape>
+    </item>
+</layer-list>

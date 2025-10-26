@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">WOSGuides</string>
+    <string name="accessibility_service_description">Auto Clicker for Whiteout Survival - Enables automated clicking functionality</string>
 </resources>

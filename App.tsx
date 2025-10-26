@@ -1,28 +1,53 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
+ * WOS Guides - Whiteout Survival Game Guides & Tools
  *
  * @format
  */
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
+import React, { useState } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
+import RootNavigator from './src/navigation/RootNavigator';
+import NetworkStatus from './src/components/NetworkStatus';
+import AnimatedSplash from './src/components/AnimatedSplash';
+import { queryClient, persister } from './src/config/queryClient';
+import { OneSignal } from 'react-native-onesignal';
+import { ONESIGNAL_APP_ID } from '@env';
+
+// Initialize OneSignal
+OneSignal.initialize(ONESIGNAL_APP_ID);
+
+// Set up notification handlers
+OneSignal.Notifications.addEventListener('foregroundWillDisplay', event => {
+  event.preventDefault();
+  event.getNotification().display();
+});
 
 function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+  const [showSplash, setShowSplash] = useState(true);
+
+  const handleSplashFinish = () => {
+    setShowSplash(false);
+  };
 
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <NewAppScreen templateFileName="App.tsx" />
-    </View>
+    <PersistQueryClientProvider
+      client={queryClient}
+      persistOptions={{ persister }}
+    >
+      {showSplash ? (
+        <AnimatedSplash onFinish={handleSplashFinish} />
+      ) : (
+        <SafeAreaProvider>
+          <NavigationContainer>
+            <RootNavigator />
+            <NetworkStatus />
+          </NavigationContainer>
+        </SafeAreaProvider>
+      )}
+    </PersistQueryClientProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default App;

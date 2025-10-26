@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run android:*)",
+      "Bash(gradlew.bat app:installDebug:*)",
+      "Bash(./gradlew.bat:*)",
+      "Bash(./gradlew:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(npm install:*)",
+      "Bash(npx react-native:*)",
+      "Bash(timeout 180 bash -c 'while true; do sleep 5; done')",
+      "Bash(cat:*)",
+      "Bash(adb logcat:*)",
+      "Bash(taskkill:*)",
+      "Bash(npx kill-port:*)",
+      "Bash(timeout /t 5)",
+      "Bash(adb shell am broadcast:*)",
+      "Bash(npx react-native-asset:*)",
+      "Bash(mkdir:*)",
+      "Bash(curl -v http://13.53.177.57)",
+      "Bash(bash gradlew app:installDebug:*)",
+      "Bash(adb shell \"curl -k https://13.53.177.57 2>&1 | head -5 || echo ''curl not available, trying with am''\")",
+      "Bash(adb shell:*)",
+      "Bash(curl:*)",
+      "Bash(rm:*)",
+      "Bash(test:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
