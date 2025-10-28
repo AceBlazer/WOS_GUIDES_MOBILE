@@ -9,6 +9,7 @@ import {
   ImageBackground,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { changeLanguage } from '../i18n';
 import { updateRTLBasedOnLanguage } from '../utils/rtl';
 import { theme } from '../styles/theme';
@@ -37,7 +38,7 @@ interface LanguageSelectorProps {
 export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   onLanguageChange,
 }) => {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [modalVisible, setModalVisible] = useState(false);
 
   const currentLanguage = LANGUAGES.find(lang => lang.code === i18n.language) || LANGUAGES[0];
@@ -95,13 +96,21 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
           style={styles.selectorButton}
           resizeMode="stretch"
         >
-          <StrokedText
-            style={styles.selectorButtonText}
-            strokeColor="#0D1721"
-            strokeWidth={1}
-          >
-            🌐 {currentLanguage.nativeName}
-          </StrokedText>
+          <View style={styles.buttonContent}>
+            <MaterialCommunityIcons
+              name="web"
+              size={20}
+              color="#FFFFFF"
+              style={styles.languageIcon}
+            />
+            <StrokedText
+              style={styles.selectorButtonText}
+              strokeColor="#0D1721"
+              strokeWidth={1}
+            >
+              {currentLanguage.nativeName}
+            </StrokedText>
+          </View>
         </ImageBackground>
       </TouchableOpacity>
 
@@ -146,6 +155,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: theme.spacing.lg,
+  },
+  buttonContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: theme.spacing.sm,
+  },
+  languageIcon: {
+    marginRight: theme.spacing.xs,
   },
   selectorButtonText: {
     color: '#FFFFFF',
