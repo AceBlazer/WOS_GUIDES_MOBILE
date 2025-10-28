@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { theme } from '../styles/theme';
 import { useCategories } from '../hooks/useApi';
 import type { GuidesStackNavigationProp } from '../types/navigation';
@@ -46,8 +47,14 @@ function CategoriesListScreen() {
 
   const renderEmpty = () => (
     <View style={styles.emptyContainer}>
+      <MaterialCommunityIcons
+        name={error ? "alert-circle" : "inbox"}
+        size={48}
+        color={theme.colors.textSecondary}
+        style={styles.emptyIcon}
+      />
       <Text style={styles.emptyText}>
-        {error ? '❌ Failed to load categories' : '📭 No categories available'}
+        {error ? 'Failed to load categories' : 'No categories available'}
       </Text>
       {error && (
         <Text style={styles.errorText}>
@@ -55,7 +62,10 @@ function CategoriesListScreen() {
         </Text>
       )}
       <TouchableOpacity style={styles.retryButton} onPress={() => refetch()}>
-        <Text style={styles.retryButtonText}>🔄 Retry</Text>
+        <View style={styles.retryButtonContent}>
+          <MaterialCommunityIcons name="refresh" size={18} color={theme.colors.textInverse} />
+          <Text style={styles.retryButtonText}>Retry</Text>
+        </View>
       </TouchableOpacity>
     </View>
   );
@@ -63,7 +73,10 @@ function CategoriesListScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <View style={styles.header}>
-        <Text style={styles.title}>❄️ Survival Guides</Text>
+        <View style={styles.titleContainer}>
+          <MaterialCommunityIcons name="snowflake" size={28} color={theme.colors.primary} />
+          <Text style={styles.title}>Survival Guides</Text>
+        </View>
         <Text style={styles.subtitle}>Build Your Shelter • Survive the Frost</Text>
         <Text style={styles.headerDescription}>
           Essential knowledge to help your survivors thrive in the eternal winter
@@ -107,6 +120,11 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     borderBottomColor: theme.colors.border,
     backgroundColor: theme.colors.backgroundLight,
+  },
+  titleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: theme.spacing.sm,
   },
   title: {
     fontSize: theme.typography.sizes.heading,
@@ -191,6 +209,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: theme.spacing.xl * 2,
   },
+  emptyIcon: {
+    marginBottom: theme.spacing.md,
+  },
   emptyText: {
     fontSize: theme.typography.sizes.lg,
     fontFamily: theme.typography.fontFamily.medium,
@@ -212,6 +233,11 @@ const styles = StyleSheet.create({
     borderRadius: theme.borderRadius.lg,
     borderWidth: 2,
     borderColor: theme.colors.primaryDark,
+  },
+  retryButtonContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: theme.spacing.sm,
   },
   retryButtonText: {
     color: theme.colors.textInverse,

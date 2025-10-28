@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, Animated } from 'react-native';
 import NetInfo from '@react-native-community/netinfo';
 import { useTranslation } from 'react-i18next';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const NetworkStatus = () => {
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
   const [isOffline, setIsOffline] = useState(false);
   const [slideAnim] = useState(new Animated.Value(-50));
 
@@ -43,6 +45,7 @@ const NetworkStatus = () => {
       style={[
         styles.container,
         {
+          bottom: 65 + Math.max(insets.bottom - 5, 0),
           transform: [{ translateY: slideAnim }],
         },
       ]}
@@ -57,7 +60,6 @@ const NetworkStatus = () => {
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    bottom: 0,
     left: 0,
     right: 0,
     zIndex: 9999,

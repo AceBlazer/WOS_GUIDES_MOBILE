@@ -1,7 +1,7 @@
 {
   "common": {
     "loading": "Loading...",
-    "retry": "🔄 Retry",
+    "retry": "Retry",
     "back": "‹ Back",
     "skip": "Skip",
     "next": "Next",
@@ -9,7 +9,8 @@
     "noInternet": "No Internet Connection",
     "restartRequired": "Restart Required",
     "restartMessage": "The app needs to restart to apply the language direction change.",
-    "restartNow": "Restart Now"
+    "restartNow": "Restart Now",
+    "selectLanguage": "Select Language"
   },
   "onboarding": {
     "slide1": {
@@ -30,40 +31,40 @@
     }
   },
   "guides": {
-    "title": "❄️ Survival Guides",
+    "title": "Survival Guides",
     "subtitle": "Build Your Shelter • Survive the Frost",
     "description": "Essential knowledge for surviving the harsh wasteland. Build, defend, and thrive in the frozen apocalypse.",
-    "sectionTitle": "📖 Survival Knowledge",
+    "sectionTitle": "Survival Knowledge",
     "loadingCategories": "Loading categories...",
-    "failedToLoad": "❌ Failed to load categories",
-    "noCategories": "📭 No categories available",
+    "failedToLoad": "Failed to load categories",
+    "noCategories": "No categories available",
     "loadingGuides": "Loading guides...",
-    "failedToLoadGuides": "❌ Failed to load guides",
-    "noGuides": "📭 No guides available",
+    "failedToLoadGuides": "Failed to load guides",
+    "noGuides": "No guides available",
     "loadingGuide": "Loading guide...",
-    "failedToLoadGuide": "❌ Failed to load guide",
-    "guideNotFound": "📭 Guide not found"
+    "failedToLoadGuide": "Failed to load guide",
+    "guideNotFound": "Guide not found"
   },
   "tools": {
-    "title": "🛠️ Survival Tools",
+    "title": "Survival Tools",
     "subtitle": "Enhance Your Shelter Management",
     "autoClicker": {
-      "title": "🤖 Auto Clicker",
+      "title": "Auto Clicker",
       "description": "Automate repetitive tapping tasks with our advanced auto clicker tool",
       "permissionTitle": "Accessibility Permission Required",
       "permissionMessage": "The Auto Clicker needs accessibility permission to function. Please enable it in the settings.",
       "permissionButton": "Open Settings",
       "permissionStatus": {
-        "granted": "✅ Permission Granted",
-        "denied": "❌ Permission Required"
+        "granted": "Permission Granted",
+        "denied": "Permission Required"
       }
     },
     "blacklistTracker": {
-      "title": "🚫 Blacklist Tracker",
+      "title": "Blacklist Tracker",
       "description": "Track and manage blacklisted players in your shelter"
     },
     "notifications": {
-      "title": "🔔 Push Notifications",
+      "title": "Push Notifications",
       "description": "Stay updated with real-time alerts and notifications"
     }
   },
@@ -74,7 +75,7 @@
     "support": "Support"
   },
   "underDevelopment": {
-    "title": "🚧 Under Development",
+    "title": "Under Development",
     "message": "This feature is currently under development and will be available soon!",
     "subtitle": "Stay tuned for updates"
   }

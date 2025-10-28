@@ -11,6 +11,7 @@ import ar from './locales/ar.json';
 import it from './locales/it.json';
 import de from './locales/de.json';
 import zh from './locales/zh.json';
+import ru from './locales/ru.json';
 
 const LANGUAGE_STORAGE_KEY = '@app_language';
 
@@ -22,6 +23,7 @@ const resources = {
   it: {translation: it},
   de: {translation: de},
   zh: {translation: zh},
+  ru: {translation: ru},
 };
 
 // Get the best available language based on device locale

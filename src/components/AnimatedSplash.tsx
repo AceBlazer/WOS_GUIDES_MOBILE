@@ -7,9 +7,13 @@ import {
   Dimensions,
   StatusBar,
 } from 'react-native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { theme } from '../styles/theme';
 
 const { width, height } = Dimensions.get('window');
+
+// Create animated version of MaterialCommunityIcons
+const AnimatedIcon = Animated.createAnimatedComponent(MaterialCommunityIcons);
 
 interface AnimatedSplashProps {
   onFinish: () => void;
@@ -106,7 +110,10 @@ const AnimatedSplash: React.FC<AnimatedSplashProps> = ({ onFinish }) => {
       <View style={styles.gradient} />
 
       {/* Animated snowflakes */}
-      <Animated.Text
+      <AnimatedIcon
+        name="snowflake"
+        size={24}
+        color="#FFFFFF"
         style={[
           styles.snowflake,
           {
@@ -114,10 +121,11 @@ const AnimatedSplash: React.FC<AnimatedSplashProps> = ({ onFinish }) => {
             transform: [{ translateY: snowflake1 }],
           },
         ]}
-      >
-        ❄️
-      </Animated.Text>
-      <Animated.Text
+      />
+      <AnimatedIcon
+        name="snowflake"
+        size={24}
+        color="#FFFFFF"
         style={[
           styles.snowflake,
           {
@@ -125,10 +133,11 @@ const AnimatedSplash: React.FC<AnimatedSplashProps> = ({ onFinish }) => {
             transform: [{ translateY: snowflake2 }],
           },
         ]}
-      >
-        ❄️
-      </Animated.Text>
-      <Animated.Text
+      />
+      <AnimatedIcon
+        name="snowflake"
+        size={24}
+        color="#FFFFFF"
         style={[
           styles.snowflake,
           {
@@ -136,9 +145,7 @@ const AnimatedSplash: React.FC<AnimatedSplashProps> = ({ onFinish }) => {
             transform: [{ translateY: snowflake3 }],
           },
         ]}
-      >
-        ❄️
-      </Animated.Text>
+      />
 
       {/* Main content */}
       <Animated.View
@@ -162,9 +169,9 @@ const AnimatedSplash: React.FC<AnimatedSplashProps> = ({ onFinish }) => {
 
         {/* Main Icon/Logo */}
         <View style={styles.iconContainer}>
-          <Text style={styles.mainIcon}>❄️</Text>
+          <MaterialCommunityIcons name="snowflake" size={100} color="#FFFFFF" style={styles.mainIcon} />
           <View style={styles.iconOverlay}>
-            <Text style={styles.bookIcon}>📖</Text>
+            <MaterialCommunityIcons name="book-open-variant" size={24} color="#FFFFFF" />
           </View>
         </View>
 
@@ -208,8 +215,6 @@ const styles = StyleSheet.create({
   },
   snowflake: {
     position: 'absolute',
-    fontSize: 24,
-    color: '#FFFFFF',
     opacity: 0.6,
   },
   content: {
@@ -237,7 +242,6 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   mainIcon: {
-    fontSize: 100,
     textShadowColor: 'rgba(79, 195, 247, 0.8)',
     textShadowOffset: { width: 0, height: 0 },
     textShadowRadius: 20,
@@ -259,9 +263,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 4,
     elevation: 5,
-  },
-  bookIcon: {
-    fontSize: 24,
   },
   title: {
     fontSize: 42,

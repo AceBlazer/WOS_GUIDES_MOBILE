@@ -6,12 +6,15 @@ import {
   TouchableOpacity,
   StatusBar,
   Dimensions,
+  ImageBackground,
 } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import PagerView from 'react-native-pager-view';
 import { useTranslation } from 'react-i18next';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { theme } from '../styles/theme';
 import LanguageSelector from './LanguageSelector';
+import StrokedText from './StrokedText';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
@@ -30,28 +33,28 @@ interface SlideData {
 const getSlides = (): SlideData[] => [
   {
     id: 1,
-    icon: '❄️',
+    icon: 'snowflake',
     titleKey: 'onboarding.slide1.title',
     subtitleKey: 'onboarding.slide1.subtitle',
     backgroundColor: '#E3F2FD',
   },
   {
     id: 2,
-    icon: '📚',
+    icon: 'book-multiple',
     titleKey: 'onboarding.slide2.title',
     subtitleKey: 'onboarding.slide2.subtitle',
     backgroundColor: '#F1F8E9',
   },
   {
     id: 3,
-    icon: '🛠️',
+    icon: 'hammer-wrench',
     titleKey: 'onboarding.slide3.title',
     subtitleKey: 'onboarding.slide3.subtitle',
     backgroundColor: '#FFF3E0',
   },
   {
     id: 4,
-    icon: '🏔️',
+    icon: 'image-filter-hdr',
     titleKey: 'onboarding.slide4.title',
     subtitleKey: 'onboarding.slide4.subtitle',
     backgroundColor: '#E8F5E8',
@@ -87,7 +90,11 @@ function WelcomeSlider({ onComplete }: WelcomeSliderProps) {
     <View key={slide.id} style={[styles.slide, { backgroundColor: slide.backgroundColor }]}>
       <View style={styles.content}>
         <View style={styles.iconContainer}>
-          <Text style={styles.icon}>{slide.icon}</Text>
+          <MaterialCommunityIcons
+            name={slide.icon}
+            size={120}
+            color={theme.colors.primary}
+          />
         </View>
 
         <View style={styles.textContainer}>
@@ -144,10 +151,20 @@ function WelcomeSlider({ onComplete }: WelcomeSliderProps) {
       <View style={[styles.footer, { paddingBottom: Math.max(insets.bottom, theme.spacing.xl) }]}>
         {renderDots()}
 
-        <TouchableOpacity onPress={handleNext} style={styles.nextButton}>
-          <Text style={styles.nextButtonText}>
-            {currentPage === slides.length - 1 ? t('common.getStarted') : t('common.next')}
-          </Text>
+        <TouchableOpacity onPress={handleNext} style={styles.nextButtonContainer}>
+          <ImageBackground
+            source={require('../../assets/fonts/buttons/button_1_3.png')}
+            style={styles.nextButton}
+            resizeMode="stretch"
+          >
+            <StrokedText
+              style={styles.nextButtonText}
+              strokeColor="#0D1721"
+              strokeWidth={1}
+            >
+              {currentPage === slides.length - 1 ? t('common.getStarted') : t('common.next')}
+            </StrokedText>
+          </ImageBackground>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -190,13 +207,6 @@ const styles = StyleSheet.create({
   iconContainer: {
     marginBottom: theme.spacing.xxl,
   },
-  icon: {
-    fontSize: 120,
-    textAlign: 'center',
-    textShadowColor: 'rgba(0,0,0,0.1)',
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 4,
-  },
   textContainer: {
     alignItems: 'center',
   },
@@ -204,7 +214,7 @@ const styles = StyleSheet.create({
     fontSize: theme.typography.sizes.display,
     fontFamily: theme.typography.fontFamily.heading,
     fontWeight: theme.typography.weights.bold,
-    color: theme.colors.textPrimary,
+    color: theme.colors.textHeader,
     textAlign: 'center',
     marginBottom: theme.spacing.sm,
     letterSpacing: 0.5,
@@ -239,20 +249,21 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     backgroundColor: theme.colors.textTertiary,
   },
+  nextButtonContainer: {
+    minWidth: 200,
+    height: 60,
+  },
   nextButton: {
-    backgroundColor: theme.colors.primary,
-    borderRadius: theme.borderRadius.lg,
-    paddingHorizontal: theme.spacing.xxl,
-    paddingVertical: theme.spacing.lg,
-    minWidth: 120,
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
-    ...theme.shadows.medium,
+    paddingHorizontal: theme.spacing.xxl,
   },
   nextButtonText: {
-    fontSize: theme.typography.sizes.lg,
+    fontSize: theme.typography.sizes.xl,
     fontFamily: theme.typography.fontFamily.bold,
     fontWeight: theme.typography.weights.bold,
-    color: theme.colors.textInverse,
+    color: '#FFFFFF',
     letterSpacing: 0.5,
   },
 });

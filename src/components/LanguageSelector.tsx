@@ -6,11 +6,13 @@ import {
   StyleSheet,
   Modal,
   FlatList,
+  ImageBackground,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { changeLanguage } from '../i18n';
 import { updateRTLBasedOnLanguage } from '../utils/rtl';
 import { theme } from '../styles/theme';
+import StrokedText from './StrokedText';
 
 interface Language {
   code: string;
@@ -25,6 +27,7 @@ const LANGUAGES: Language[] = [
   { code: 'it', name: 'Italian', nativeName: 'Italiano' },
   { code: 'de', name: 'German', nativeName: 'Deutsch' },
   { code: 'zh', name: 'Chinese', nativeName: '中文' },
+  { code: 'ru', name: 'Russian', nativeName: 'Русский' },
 ];
 
 interface LanguageSelectorProps {
@@ -84,10 +87,22 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   return (
     <>
       <TouchableOpacity
-        style={styles.selectorButton}
+        style={styles.selectorButtonContainer}
         onPress={() => setModalVisible(true)}
       >
-        <Text style={styles.selectorButtonText}>🌐 {currentLanguage.nativeName}</Text>
+        <ImageBackground
+          source={require('../../assets/fonts/buttons/button_1_3.png')}
+          style={styles.selectorButton}
+          resizeMode="stretch"
+        >
+          <StrokedText
+            style={styles.selectorButtonText}
+            strokeColor="#0D1721"
+            strokeWidth={1}
+          >
+            🌐 {currentLanguage.nativeName}
+          </StrokedText>
+        </ImageBackground>
       </TouchableOpacity>
 
       <Modal
@@ -99,7 +114,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>
             <View style={styles.modalHeader}>
-              <Text style={styles.modalTitle}>Select Language</Text>
+              <Text style={styles.modalTitle}>{t('common.selectLanguage')}</Text>
               <TouchableOpacity
                 style={styles.closeButton}
                 onPress={() => setModalVisible(false)}
@@ -122,18 +137,19 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
 };
 
 const styles = StyleSheet.create({
+  selectorButtonContainer: {
+    minWidth: 200,
+    height: 60,
+  },
   selectorButton: {
-    backgroundColor: theme.colors.primary,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
     paddingHorizontal: theme.spacing.lg,
-    paddingVertical: theme.spacing.md,
-    borderRadius: theme.borderRadius.lg,
-    borderWidth: 2,
-    borderColor: theme.colors.primaryDark,
-    ...theme.shadows.medium,
   },
   selectorButtonText: {
-    color: theme.colors.textInverse,
-    fontSize: theme.typography.sizes.md,
+    color: '#FFFFFF',
+    fontSize: theme.typography.sizes.lg,
     fontFamily: theme.typography.fontFamily.medium,
     fontWeight: theme.typography.weights.medium,
   },

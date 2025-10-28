@@ -9,7 +9,8 @@
     "noInternet": "无网络连接",
     "restartRequired": "需要重启",
     "restartMessage": "应用需要重启以应用语言方向更改。",
-    "restartNow": "立即重启"
+    "restartNow": "立即重启",
+    "selectLanguage": "选择语言"
   },
   "onboarding": {
     "slide1": {
@@ -30,18 +31,18 @@
     }
   },
   "guides": {
-    "title": "❄️ 生存指南",
+    "title": "生存指南",
     "subtitle": "建造你的庇护所 • 在严寒中生存",
     "description": "在严酷的荒地中生存的基本知识。在冰封末日中建造、防御和繁荣。",
     "sectionTitle": "📖 生存知识",
     "loadingCategories": "加载分类中...",
-    "failedToLoad": "❌ 加载分类失败",
+    "failedToLoad": "加载分类失败",
     "noCategories": "📭 暂无分类",
     "loadingGuides": "加载指南中...",
-    "failedToLoadGuides": "❌ 加载指南失败",
+    "failedToLoadGuides": "加载指南失败",
     "noGuides": "📭 暂无指南",
     "loadingGuide": "加载指南中...",
-    "failedToLoadGuide": "❌ 加载指南失败",
+    "failedToLoadGuide": "加载指南失败",
     "guideNotFound": "📭 未找到指南"
   },
   "tools": {
@@ -54,8 +55,8 @@
       "permissionMessage": "自动点击器需要无障碍权限才能运行。请在设置中启用它。",
       "permissionButton": "打开设置",
       "permissionStatus": {
-        "granted": "✅ 已授予权限",
-        "denied": "❌ 需要权限"
+        "granted": "已授予权限",
+        "denied": "需要权限"
       }
     },
     "blacklistTracker": {

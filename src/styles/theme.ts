@@ -9,14 +9,14 @@ export const theme = {
     primaryLight: '#81D4FA', // Light ice blue
 
     // Accent colors - Warm gold/fire (warmth in the cold)
-    accent: '#FFB300', // Warm gold
+    accent: '#B68F00', // Warm gold
     accentDark: '#FF8F00', // Deeper gold
     accentLight: '#FFD54F', // Light gold
 
     // Background colors - DARK frozen theme (like the game)
-    background: '#0D1721', // Very dark blue-black (main app background)
-    backgroundLight: '#1A2938', // Dark frozen steel (elevated surfaces)
-    backgroundCard: '#243441', // Dark card background
+    background: '#003462', // Very dark blue-black (main app background)
+    backgroundLight: '#E4F1FF', // Light blue (header background)
+    backgroundCard: '#0C4B87', // Dark card background
     backgroundModal: 'rgba(13, 23, 33, 0.95)', // Dark modal overlay
 
     // Surface colors - Dark ice and metal
@@ -25,10 +25,11 @@ export const theme = {
     surfaceDark: '#0F1A24', // Darker surface (almost black)
 
     // Text colors - Light on dark for readability
-    textPrimary: '#E8F4FD', // Almost white with blue tint
+    textPrimary: '#E8F4FD', // Almost white with blue tint (for dark backgrounds)
     textSecondary: '#8FA9C1', // Muted ice blue-grey
     textTertiary: '#6B7B8C', // Subtle grey-blue
     textInverse: '#0D1721', // Dark text on light backgrounds
+    textHeader: '#164A87', // Dark blue text for light headers
 
     // Status colors - Survival themed
     success: '#4CAF50', // Green for success/safe

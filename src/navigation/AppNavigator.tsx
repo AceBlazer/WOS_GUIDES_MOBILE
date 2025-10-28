@@ -1,12 +1,17 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Text, Platform } from 'react-native';
+import { Platform, View, StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { theme } from '../styles/theme';
 
-import type { RootTabParamList, GuidesStackParamList, ToolsStackParamList } from '../types/navigation';
+import type {
+  RootTabParamList,
+  GuidesStackParamList,
+  ToolsStackParamList,
+} from '../types/navigation';
 
 // Screen imports
 import GuidesScreen from '../screens/GuidesScreen';
@@ -21,28 +26,53 @@ const Tab = createBottomTabNavigator<RootTabParamList>();
 const GuidesStack = createNativeStackNavigator<GuidesStackParamList>();
 const ToolsStack = createNativeStackNavigator<ToolsStackParamList>();
 
-// Custom Tab Bar Icon component
+// Custom Tab Bar Icon component with separator
 const TabIcon = ({ name, focused }: { name: string; focused: boolean }) => {
-  const getIcon = (tabName: string) => {
+  const getIconConfig = (
+    tabName: string,
+  ): { name: string; focused: string; unfocused: string } => {
     switch (tabName) {
-      case 'Guides': return focused ? '📖' : '📚';
-      case 'Tools': return focused ? '🛠️' : '⚙️';
-      case 'Shop': return focused ? '🛒' : '🏪';
-      case 'SupportDevs': return focused ? '💙' : '❤️';
-      default: return '📱';
+      case 'Guides':
+        return {
+          name: 'Guides',
+          focused: 'book-open-variant',
+          unfocused: 'book-multiple',
+        };
+      case 'Tools':
+        return { name: 'Tools', focused: 'toolbox', unfocused: 'cog' };
+      case 'Shop':
+        return { name: 'Shop', focused: 'cart', unfocused: 'store' };
+      case 'SupportDevs':
+        return {
+          name: 'SupportDevs',
+          focused: 'heart',
+          unfocused: 'heart-outline',
+        };
+      default:
+        return {
+          name: 'Default',
+          focused: 'cellphone',
+          unfocused: 'cellphone',
+        };
     }
   };
 
+  const iconConfig = getIconConfig(name);
+  const iconName = focused ? iconConfig.focused : iconConfig.unfocused;
+  const showSeparator = name !== 'SupportDevs'; // Don't show separator on last tab
+
   return (
-    <Text style={{
-      fontSize: 20,
-      opacity: focused ? 1 : 0.7,
-      textShadowColor: focused ? 'rgba(79, 195, 247, 0.5)' : 'rgba(0,0,0,0.2)',
-      textShadowOffset: { width: 0, height: 1 },
-      textShadowRadius: focused ? 2 : 1,
-    }}>
-      {getIcon(name)}
-    </Text>
+    <View style={styles.tabIconContainer}>
+      <MaterialCommunityIcons
+        name={iconName}
+        size={24}
+        color="#FFFFFF"
+        style={{
+          opacity: focused ? 1 : 0.7,
+        }}
+      />
+      {showSeparator && <View style={styles.tabSeparator} />}
+    </View>
   );
 };
 
@@ -122,21 +152,26 @@ function AppNavigator() {
         tabBarIcon: ({ focused }) => (
           <TabIcon name={route.name} focused={focused} />
         ),
-        tabBarActiveTintColor: theme.colors.primary, // Bright ice blue when active
-        tabBarInactiveTintColor: theme.colors.textTertiary, // Muted grey-blue when inactive
+        tabBarActiveTintColor: '#FFFFFF', // White when active
+        tabBarInactiveTintColor: 'rgba(255, 255, 255, 0.7)', // Semi-transparent white when inactive
         tabBarStyle: {
-          backgroundColor: theme.colors.backgroundLight, // Dark frozen steel
-          borderTopWidth: 1,
-          borderTopColor: theme.colors.border, // Subtle dark border
+          backgroundColor: '#3E93E3', // New blue background
+          borderTopWidth: 2,
+          borderTopColor: '#6FB3F5', // Lighter blue horizontal line at top
           paddingTop: 8,
           paddingBottom: Math.max(insets.bottom, 8),
           height: 65 + Math.max(insets.bottom - 5, 0),
-          ...theme.shadows.medium,
+          elevation: 8,
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: -2 },
+          shadowOpacity: 0.1,
+          shadowRadius: 4,
         },
         tabBarLabelStyle: {
           fontSize: 11,
           fontWeight: '700',
           letterSpacing: 0.3,
+          marginTop: 4,
         },
         headerShown: false,
       })}
@@ -151,10 +186,7 @@ function AppNavigator() {
         component={ToolsStackNavigator}
         options={{ tabBarLabel: t('tabs.tools') }}
       />
-      <Tab.Screen
-        name="Shop"
-        options={{ tabBarLabel: t('tabs.shop') }}
-      >
+      <Tab.Screen name="Shop" options={{ tabBarLabel: t('tabs.shop') }}>
         {() => (
           <UnderDevelopmentScreen
             title={t('tabs.shop')}
@@ -176,5 +208,23 @@ function AppNavigator() {
     </Tab.Navigator>
   );
 }
+
+const styles = StyleSheet.create({
+  tabIconContainer: {
+    position: 'relative',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+  },
+  tabSeparator: {
+    position: 'absolute',
+    right: -30,
+    top: '50%',
+    marginTop: -20,
+    width: 1,
+    height: 40,
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+  },
+});
 
 export default AppNavigator;

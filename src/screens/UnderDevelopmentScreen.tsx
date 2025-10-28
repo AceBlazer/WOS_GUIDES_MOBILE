@@ -1,13 +1,14 @@
 import React from 'react';
 import {
   StyleSheet,
-  useColorScheme,
+  
   View,
   Text,
   StatusBar,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { theme } from '../styles/theme';
 
 interface UnderDevelopmentScreenProps {
@@ -17,7 +18,6 @@ interface UnderDevelopmentScreenProps {
 
 function UnderDevelopmentScreen({ title, subtitle }: UnderDevelopmentScreenProps) {
   const { t } = useTranslation();
-  const isDarkMode = useColorScheme() === 'dark';
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
@@ -37,7 +37,7 @@ function UnderDevelopmentScreen({ title, subtitle }: UnderDevelopmentScreenProps
       <View style={styles.content}>
         <View style={styles.section}>
           <View style={styles.iconContainer}>
-            <Text style={styles.icon}>🏗️</Text>
+            <MaterialCommunityIcons name="hammer-wrench" size={80} color={theme.colors.warning} />
           </View>
 
           <Text style={styles.developmentTitle}>
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: theme.typography.sizes.heading,
     fontWeight: theme.typography.weights.bold,
-    color: theme.colors.textPrimary,
+    color: theme.colors.textHeader,
     letterSpacing: 1,
   },
   subtitle: {
@@ -97,12 +97,6 @@ const styles = StyleSheet.create({
   },
   iconContainer: {
     marginBottom: theme.spacing.lg,
-  },
-  icon: {
-    fontSize: 80,
-    textShadowColor: 'rgba(0,0,0,0.5)',
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 4,
   },
   developmentTitle: {
     fontSize: theme.typography.sizes.title,

@@ -23,7 +23,13 @@
       "Bash(adb shell:*)",
       "Bash(curl:*)",
       "Bash(rm:*)",
-      "Bash(test:*)"
+      "Bash(test:*)",
+      "Bash(adb uninstall:*)",
+      "Bash(find:*)",
+      "Bash(for file in ar.json de.json fr.json it.json zh.json)",
+      "Bash(do sed -i 's/\"\"title\"\": \"\"❄️ /\"\"title\"\": \"\"/g' \"$file\")",
+      "Bash(done)",
+      "Bash(do)"
     ],
     "deny": [],
     "ask": []

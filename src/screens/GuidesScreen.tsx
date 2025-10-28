@@ -8,6 +8,7 @@ import {
   ScrollView,
   ActivityIndicator,
   RefreshControl,
+  ImageBackground,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
@@ -15,18 +16,9 @@ import { useTranslation } from 'react-i18next';
 import { theme } from '../styles/theme';
 import { useCategories } from '../hooks/useApi';
 import CompactLanguageSelector from '../components/CompactLanguageSelector';
+import StrokedText from '../components/StrokedText';
 import type { GuidesStackNavigationProp } from '../types/navigation';
 import type { Category } from '../types/api';
-
-// Define color palette for category buttons
-const CATEGORY_COLORS = [
-  { bg: theme.colors.primary, border: theme.colors.primaryDark },
-  { bg: theme.colors.accent, border: theme.colors.accentDark },
-  { bg: theme.colors.info, border: theme.colors.primary },
-  { bg: '#8E44AD', border: '#6C3483' }, // Purple
-  { bg: '#E67E22', border: '#CA6F1E' }, // Orange
-  { bg: '#16A085', border: '#138D75' }, // Teal
-];
 
 function GuidesScreen() {
   const { t } = useTranslation();
@@ -38,10 +30,6 @@ function GuidesScreen() {
       categoryId: category._id,
       categoryName: category.name,
     });
-  };
-
-  const getCategoryColor = (index: number) => {
-    return CATEGORY_COLORS[index % CATEGORY_COLORS.length];
   };
 
   return (
@@ -102,23 +90,27 @@ function GuidesScreen() {
           ) : categories && categories.length > 0 ? (
             <View style={styles.buttonContainer}>
               {categories.map((category, index) => {
-                const colors = getCategoryColor(index);
                 return (
                   <TouchableOpacity
                     key={category._id}
-                    style={[
-                      styles.button,
-                      {
-                        backgroundColor: colors.bg,
-                        borderColor: colors.border,
-                      },
-                    ]}
+                    style={styles.button}
                     onPress={() => handleCategoryPress(category)}
+                    activeOpacity={0.8}
                   >
-                    <Text style={styles.buttonText}>{category.name}</Text>
-                    {category.description && (
-                      <Text style={styles.buttonSubText}>{category.description}</Text>
-                    )}
+                    <ImageBackground
+                      source={require('../../assets/fonts/buttons/button_1_1.png')}
+                      style={styles.buttonBackground}
+                      resizeMode="stretch"
+                    >
+                      <StrokedText style={styles.buttonText} strokeColor="#0D4D7A" strokeWidth={1}>
+                        {category.name}
+                      </StrokedText>
+                      {category.description && (
+                        <StrokedText style={styles.buttonSubText} strokeColor="#0D4D7A" strokeWidth={1}>
+                          {category.description}
+                        </StrokedText>
+                      )}
+                    </ImageBackground>
                   </TouchableOpacity>
                 );
               })}
@@ -160,7 +152,7 @@ const styles = StyleSheet.create({
     fontSize: theme.typography.sizes.heading,
     fontWeight: theme.typography.weights.bold,
     fontFamily: theme.typography.fontFamily.heading,
-    color: theme.colors.textPrimary,
+    color: theme.colors.textHeader,
     letterSpacing: 1,
   },
   subtitle: {
@@ -219,12 +211,15 @@ const styles = StyleSheet.create({
     gap: theme.spacing.md,
   },
   button: {
-    paddingVertical: theme.spacing.lg,
+    overflow: 'hidden',
+    borderRadius: theme.borderRadius.md,
+  },
+  buttonBackground: {
+    paddingVertical: theme.spacing.xl,
     paddingHorizontal: theme.spacing.lg,
-    borderRadius: theme.borderRadius.lg,
     alignItems: 'center',
-    borderWidth: 2,
-    ...theme.shadows.small,
+    justifyContent: 'center',
+    minHeight: 100,
   },
   loadingContainer: {
     paddingVertical: theme.spacing.xl * 2,
@@ -285,20 +280,17 @@ const styles = StyleSheet.create({
     opacity: 0.8,
   },
   buttonText: {
-    color: theme.colors.textInverse,
-    fontSize: theme.typography.sizes.lg,
+    color: '#FFFFFF',
+    fontSize: theme.typography.sizes.xl,
     fontFamily: theme.typography.fontFamily.bold,
     fontWeight: theme.typography.weights.bold,
     marginBottom: theme.spacing.xs,
-    textShadowColor: 'rgba(0,0,0,0.3)',
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 2,
   },
   buttonSubText: {
-    color: theme.colors.textInverse,
+    color: '#FFFFFF',
     fontSize: theme.typography.sizes.sm,
     fontFamily: theme.typography.fontFamily.regular,
-    opacity: 0.9,
+    opacity: 0.95,
     textAlign: 'center',
   },
 });

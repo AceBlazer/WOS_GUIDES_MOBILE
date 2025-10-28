@@ -9,7 +9,8 @@
     "noInternet": "Keine Internetverbindung",
     "restartRequired": "Neustart erforderlich",
     "restartMessage": "Die App muss neu gestartet werden, um die Änderung der Sprachrichtung anzuwenden.",
-    "restartNow": "Jetzt neu starten"
+    "restartNow": "Jetzt neu starten",
+    "selectLanguage": "Sprache wählen"
   },
   "onboarding": {
     "slide1": {
@@ -30,18 +31,18 @@
     }
   },
   "guides": {
-    "title": "❄️ Überlebensführer",
+    "title": "Überlebensführer",
     "subtitle": "Baue deine Unterkunft • Überlebe den Frost",
     "description": "Wesentliches Wissen zum Überleben im harten Ödland. Baue, verteidige und gedeihe in der gefrorenen Apokalypse.",
     "sectionTitle": "📖 Überlebenswissen",
     "loadingCategories": "Lade Kategorien...",
-    "failedToLoad": "❌ Kategorien konnten nicht geladen werden",
+    "failedToLoad": "Kategorien konnten nicht geladen werden",
     "noCategories": "📭 Keine Kategorien verfügbar",
     "loadingGuides": "Lade Anleitungen...",
-    "failedToLoadGuides": "❌ Anleitungen konnten nicht geladen werden",
+    "failedToLoadGuides": "Anleitungen konnten nicht geladen werden",
     "noGuides": "📭 Keine Anleitungen verfügbar",
     "loadingGuide": "Lade Anleitung...",
-    "failedToLoadGuide": "❌ Anleitung konnte nicht geladen werden",
+    "failedToLoadGuide": "Anleitung konnte nicht geladen werden",
     "guideNotFound": "📭 Anleitung nicht gefunden"
   },
   "tools": {
@@ -54,8 +55,8 @@
       "permissionMessage": "Der Auto-Clicker benötigt eine Barrierefreiheitsberechtigung, um zu funktionieren. Bitte aktivieren Sie sie in den Einstellungen.",
       "permissionButton": "Einstellungen öffnen",
       "permissionStatus": {
-        "granted": "✅ Berechtigung erteilt",
-        "denied": "❌ Berechtigung erforderlich"
+        "granted": "Berechtigung erteilt",
+        "denied": "Berechtigung erforderlich"
       }
     },
     "blacklistTracker": {

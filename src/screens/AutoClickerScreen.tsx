@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {
   StatusBar,
   StyleSheet,
-  useColorScheme,
+  
   View,
   Text,
   TouchableOpacity,
@@ -12,13 +12,13 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { theme } from '../styles/theme';
 
 const { AutoClickerModule } = NativeModules;
 
 function AutoClickerScreen() {
   const { t } = useTranslation();
-  const isDarkMode = useColorScheme() === 'dark';
   const [hasOverlayPermission, setHasOverlayPermission] = useState(false);
   const [hasAccessibilityPermission, setHasAccessibilityPermission] = useState(false);
   const [isOverlayActive, setIsOverlayActive] = useState(false);
@@ -125,9 +125,10 @@ function AutoClickerScreen() {
       <StatusBar barStyle="dark-content" backgroundColor={theme.colors.background} />
 
       <View style={styles.header}>
-        <Text style={styles.title}>
-          🤖 Auto Clicker
-        </Text>
+        <View style={styles.titleContainer}>
+          <MaterialCommunityIcons name="robot" size={32} color={theme.colors.primary} />
+          <Text style={styles.title}>Auto Clicker</Text>
+        </View>
         <Text style={styles.subtitle}>
           Automated Tapping Assistant
         </Text>
@@ -143,15 +144,38 @@ function AutoClickerScreen() {
           </Text>
 
           <View style={styles.permissionStatus}>
-            <Text style={styles.permissionHeader}>
-              📱 Required Permissions
-            </Text>
-            <Text style={[styles.permissionText, hasOverlayPermission ? styles.permissionGranted : styles.permissionRequired]}>
-              🛡️ Display over apps: {hasOverlayPermission ? '✅ Granted' : '❌ Required'}
-            </Text>
-            <Text style={[styles.permissionText, hasAccessibilityPermission ? styles.permissionGranted : styles.permissionRequired]}>
-              ⚙️ Accessibility service: {hasAccessibilityPermission ? '✅ Enabled' : '❌ Required'}
-            </Text>
+            <View style={styles.permissionHeaderContainer}>
+              <MaterialCommunityIcons name="cellphone" size={20} color={theme.colors.accent} />
+              <Text style={styles.permissionHeader}>Required Permissions</Text>
+            </View>
+            <View style={styles.permissionRow}>
+              <MaterialCommunityIcons name="shield-check" size={18} color={hasOverlayPermission ? theme.colors.success : theme.colors.danger} />
+              <Text style={[styles.permissionText, hasOverlayPermission ? styles.permissionGranted : styles.permissionRequired]}>
+                Display over apps:
+              </Text>
+              <MaterialCommunityIcons
+                name={hasOverlayPermission ? "check-circle" : "close-circle"}
+                size={16}
+                color={hasOverlayPermission ? theme.colors.success : theme.colors.danger}
+              />
+              <Text style={[styles.permissionText, hasOverlayPermission ? styles.permissionGranted : styles.permissionRequired]}>
+                {hasOverlayPermission ? ' Granted' : ' Required'}
+              </Text>
+            </View>
+            <View style={styles.permissionRow}>
+              <MaterialCommunityIcons name="cog" size={18} color={hasAccessibilityPermission ? theme.colors.success : theme.colors.danger} />
+              <Text style={[styles.permissionText, hasAccessibilityPermission ? styles.permissionGranted : styles.permissionRequired]}>
+                Accessibility service:
+              </Text>
+              <MaterialCommunityIcons
+                name={hasAccessibilityPermission ? "check-circle" : "close-circle"}
+                size={16}
+                color={hasAccessibilityPermission ? theme.colors.success : theme.colors.danger}
+              />
+              <Text style={[styles.permissionText, hasAccessibilityPermission ? styles.permissionGranted : styles.permissionRequired]}>
+                {hasAccessibilityPermission ? ' Enabled' : ' Required'}
+              </Text>
+            </View>
           </View>
 
           <View style={styles.buttonContainer}>
@@ -160,7 +184,10 @@ function AutoClickerScreen() {
                 style={[styles.button, styles.permissionButton]}
                 onPress={requestOverlayPermission}
               >
-                <Text style={styles.buttonText}>🛡️ Grant Overlay Permission</Text>
+                <View style={styles.buttonContent}>
+                  <MaterialCommunityIcons name="shield-check" size={20} color={theme.colors.textPrimary} />
+                  <Text style={styles.buttonText}>Grant Overlay Permission</Text>
+                </View>
                 <Text style={styles.buttonSubText}>Allow app to display over other apps</Text>
               </TouchableOpacity>
             )}
@@ -170,7 +197,10 @@ function AutoClickerScreen() {
                 style={[styles.button, styles.permissionButton]}
                 onPress={requestAccessibilityPermission}
               >
-                <Text style={styles.buttonText}>⚙️ Enable Accessibility</Text>
+                <View style={styles.buttonContent}>
+                  <MaterialCommunityIcons name="cog" size={20} color={theme.colors.textPrimary} />
+                  <Text style={styles.buttonText}>Enable Accessibility</Text>
+                </View>
                 <Text style={styles.buttonSubText}>Required for automatic tapping</Text>
               </TouchableOpacity>
             )}
@@ -180,7 +210,10 @@ function AutoClickerScreen() {
                 style={[styles.button, styles.startButton]}
                 onPress={startAutoClicker}
               >
-                <Text style={styles.buttonText}>🚀 Start Auto Clicker</Text>
+                <View style={styles.buttonContent}>
+                  <MaterialCommunityIcons name="rocket-launch" size={20} color={theme.colors.textPrimary} />
+                  <Text style={styles.buttonText}>Start Auto Clicker</Text>
+                </View>
                 <Text style={styles.buttonSubText}>Begin automated tapping</Text>
               </TouchableOpacity>
             ) : (
@@ -188,7 +221,10 @@ function AutoClickerScreen() {
                 style={[styles.button, styles.stopButton]}
                 onPress={stopAutoClicker}
               >
-                <Text style={styles.buttonText}>⏹️ Stop Auto Clicker</Text>
+                <View style={styles.buttonContent}>
+                  <MaterialCommunityIcons name="stop" size={20} color={theme.colors.textPrimary} />
+                  <Text style={styles.buttonText}>Stop Auto Clicker</Text>
+                </View>
                 <Text style={styles.buttonSubText}>End automated tapping</Text>
               </TouchableOpacity>
             )}
@@ -210,6 +246,11 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     borderBottomColor: theme.colors.border,
     backgroundColor: theme.colors.backgroundLight,
+  },
+  titleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: theme.spacing.sm,
   },
   title: {
     fontSize: theme.typography.sizes.heading,
@@ -270,21 +311,31 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: theme.colors.border,
   },
+  permissionHeaderContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: theme.spacing.sm,
+    marginBottom: theme.spacing.sm,
+  },
   permissionHeader: {
     fontSize: theme.typography.sizes.lg,
     color: theme.colors.accent,
-    marginBottom: theme.spacing.sm,
     fontWeight: theme.typography.weights.bold,
-    textAlign: 'center',
     letterSpacing: 1,
     textShadowColor: 'rgba(255, 127, 63, 0.3)',
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 2,
   },
+  permissionRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: theme.spacing.xs,
+    marginBottom: theme.spacing.xs,
+  },
   permissionText: {
     fontSize: theme.typography.sizes.md,
     color: theme.colors.textPrimary,
-    marginBottom: theme.spacing.xs,
     fontWeight: theme.typography.weights.medium,
   },
   permissionGranted: {
@@ -316,6 +367,12 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.danger,
     borderColor: '#C62828',
   },
+  buttonContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: theme.spacing.sm,
+    marginBottom: theme.spacing.xs,
+  },
   buttonText: {
     color: theme.colors.textPrimary,
     fontSize: theme.typography.sizes.md,
@@ -324,7 +381,6 @@ const styles = StyleSheet.create({
     textShadowColor: 'rgba(0,0,0,0.3)',
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 2,
-    marginBottom: theme.spacing.xs,
   },
   buttonSubText: {
     color: theme.colors.textPrimary,

@@ -9,7 +9,8 @@
     "noInternet": "Pas de connexion Internet",
     "restartRequired": "Redémarrage requis",
     "restartMessage": "L'application doit redémarrer pour appliquer le changement de direction de langue.",
-    "restartNow": "Redémarrer"
+    "restartNow": "Redémarrer",
+    "selectLanguage": "Sélectionner la langue"
   },
   "onboarding": {
     "slide1": {
@@ -30,18 +31,18 @@
     }
   },
   "guides": {
-    "title": "❄️ Guides de survie",
+    "title": "Guides de survie",
     "subtitle": "Construisez votre abri • Survivez au gel",
     "description": "Connaissances essentielles pour survivre dans les terres désolées. Construisez, défendez et prospérez dans l'apocalypse glacée.",
     "sectionTitle": "📖 Connaissances de survie",
     "loadingCategories": "Chargement des catégories...",
-    "failedToLoad": "❌ Échec du chargement des catégories",
+    "failedToLoad": "Échec du chargement des catégories",
     "noCategories": "📭 Aucune catégorie disponible",
     "loadingGuides": "Chargement des guides...",
-    "failedToLoadGuides": "❌ Échec du chargement des guides",
+    "failedToLoadGuides": "Échec du chargement des guides",
     "noGuides": "📭 Aucun guide disponible",
     "loadingGuide": "Chargement du guide...",
-    "failedToLoadGuide": "❌ Échec du chargement du guide",
+    "failedToLoadGuide": "Échec du chargement du guide",
     "guideNotFound": "📭 Guide introuvable"
   },
   "tools": {
@@ -54,8 +55,8 @@
       "permissionMessage": "Le cliqueur automatique nécessite une permission d'accessibilité pour fonctionner. Veuillez l'activer dans les paramètres.",
       "permissionButton": "Ouvrir les paramètres",
       "permissionStatus": {
-        "granted": "✅ Permission accordée",
-        "denied": "❌ Permission requise"
+        "granted": "Permission accordée",
+        "denied": "Permission requise"
       }
     },
     "blacklistTracker": {

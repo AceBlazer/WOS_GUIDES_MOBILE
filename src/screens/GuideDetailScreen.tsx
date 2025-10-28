@@ -246,7 +246,7 @@ const styles = StyleSheet.create({
     fontSize: theme.typography.sizes.heading,
     fontWeight: theme.typography.weights.bold,
     fontFamily: theme.typography.fontFamily.heading,
-    color: theme.colors.textPrimary,
+    color: theme.colors.textHeader,
     letterSpacing: 1,
   },
   webView: {

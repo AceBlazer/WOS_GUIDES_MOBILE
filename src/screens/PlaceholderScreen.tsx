@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   StyleSheet,
-  useColorScheme,
+  
   View,
   Text,
   TouchableOpacity,
@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { theme } from '../styles/theme';
 
 interface PlaceholderScreenProps {
@@ -18,7 +19,6 @@ interface PlaceholderScreenProps {
 }
 
 function PlaceholderScreen({ title, subtitle, description }: PlaceholderScreenProps) {
-  const isDarkMode = useColorScheme() === 'dark';
   const navigation = useNavigation();
 
   return (
@@ -39,12 +39,13 @@ function PlaceholderScreen({ title, subtitle, description }: PlaceholderScreenPr
       <View style={styles.content}>
         <View style={styles.section}>
           <View style={styles.iconContainer}>
-            <Text style={styles.icon}>❄️</Text>
+            <MaterialCommunityIcons name="snowflake" size={80} color={theme.colors.primary} />
           </View>
 
-          <Text style={styles.comingSoonTitle}>
-            🚧 UNDER CONSTRUCTION
-          </Text>
+          <View style={styles.titleRow}>
+            <MaterialCommunityIcons name="progress-wrench" size={24} color={theme.colors.accent} />
+            <Text style={styles.comingSoonTitle}>UNDER CONSTRUCTION</Text>
+          </View>
 
           <Text style={styles.comingSoonText}>
             {description || `${title} content is coming soon! We're working hard to bring you the best survival guides and tools for the frozen wasteland.`}
@@ -54,7 +55,10 @@ function PlaceholderScreen({ title, subtitle, description }: PlaceholderScreenPr
             style={styles.backButton}
             onPress={() => navigation.goBack()}
           >
-            <Text style={styles.backButtonText}>← RETURN TO BASE</Text>
+            <View style={styles.backButtonContent}>
+              <MaterialCommunityIcons name="arrow-left" size={20} color={theme.colors.textPrimary} />
+              <Text style={styles.backButtonText}>RETURN TO BASE</Text>
+            </View>
           </TouchableOpacity>
         </View>
       </View>
@@ -77,7 +81,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: theme.typography.sizes.heading,
     fontWeight: theme.typography.weights.bold,
-    color: theme.colors.textPrimary,
+    color: theme.colors.textHeader,
     letterSpacing: 1,
   },
   subtitle: {
@@ -103,18 +107,16 @@ const styles = StyleSheet.create({
   iconContainer: {
     marginBottom: theme.spacing.lg,
   },
-  icon: {
-    fontSize: 80,
-    textShadowColor: 'rgba(0,0,0,0.5)',
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 4,
+  titleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: theme.spacing.sm,
+    marginBottom: theme.spacing.md,
   },
   comingSoonTitle: {
     fontSize: theme.typography.sizes.title,
     fontWeight: theme.typography.weights.bold,
     color: theme.colors.accent,
-    marginBottom: theme.spacing.md,
-    textAlign: 'center',
     letterSpacing: 1,
     textShadowColor: 'rgba(0,0,0,0.3)',
     textShadowOffset: { width: 1, height: 1 },
@@ -135,6 +137,11 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: theme.colors.primaryDark,
     ...theme.shadows.medium,
+  },
+  backButtonContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: theme.spacing.sm,
   },
   backButtonText: {
     color: theme.colors.textPrimary,

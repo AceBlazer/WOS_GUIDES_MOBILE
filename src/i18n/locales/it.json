@@ -9,7 +9,8 @@
     "noInternet": "Nessuna connessione Internet",
     "restartRequired": "Riavvio richiesto",
     "restartMessage": "L'app deve riavviarsi per applicare la modifica della direzione della lingua.",
-    "restartNow": "Riavvia ora"
+    "restartNow": "Riavvia ora",
+    "selectLanguage": "Seleziona lingua"
   },
   "onboarding": {
     "slide1": {
@@ -30,18 +31,18 @@
     }
   },
   "guides": {
-    "title": "❄️ Guide di sopravvivenza",
+    "title": "Guide di sopravvivenza",
     "subtitle": "Costruisci il tuo rifugio • Sopravvivi al gelo",
     "description": "Conoscenze essenziali per sopravvivere nella dura terra desolata. Costruisci, difendi e prospera nell'apocalisse ghiacciata.",
     "sectionTitle": "📖 Conoscenze di sopravvivenza",
     "loadingCategories": "Caricamento categorie...",
-    "failedToLoad": "❌ Impossibile caricare le categorie",
+    "failedToLoad": "Impossibile caricare le categorie",
     "noCategories": "📭 Nessuna categoria disponibile",
     "loadingGuides": "Caricamento guide...",
-    "failedToLoadGuides": "❌ Impossibile caricare le guide",
+    "failedToLoadGuides": "Impossibile caricare le guide",
     "noGuides": "📭 Nessuna guida disponibile",
     "loadingGuide": "Caricamento guida...",
-    "failedToLoadGuide": "❌ Impossibile caricare la guida",
+    "failedToLoadGuide": "Impossibile caricare la guida",
     "guideNotFound": "📭 Guida non trovata"
   },
   "tools": {
@@ -54,8 +55,8 @@
       "permissionMessage": "L'Auto Clicker necessita dell'autorizzazione di accessibilità per funzionare. Si prega di abilitarla nelle impostazioni.",
       "permissionButton": "Apri impostazioni",
       "permissionStatus": {
-        "granted": "✅ Autorizzazione concessa",
-        "denied": "❌ Autorizzazione richiesta"
+        "granted": "Autorizzazione concessa",
+        "denied": "Autorizzazione richiesta"
       }
     },
     "blacklistTracker": {
