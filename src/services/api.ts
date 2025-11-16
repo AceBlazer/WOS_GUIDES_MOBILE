@@ -99,6 +99,13 @@ class ApiService {
     );
     return this.handleResponse<Guide[]>(response);
   }
+
+  async searchGuides(query: string): Promise<Guide[]> {
+    const response = await this.fetchWithTimeout(
+      `${this.baseUrl}/guides/search?q=${encodeURIComponent(query)}`
+    );
+    return this.handleResponse<Guide[]>(response);
+  }
 }
 
 export const apiService = new ApiService();

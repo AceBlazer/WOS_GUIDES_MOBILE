@@ -17,6 +17,7 @@ import type {
 import GuidesScreen from '../screens/GuidesScreen';
 import CategoryGuidesScreen from '../screens/CategoryGuidesScreen';
 import GuideDetailScreen from '../screens/GuideDetailScreen';
+import SearchResultsScreen from '../screens/SearchResultsScreen';
 import ToolsScreen from '../screens/ToolsScreen';
 import AutoClickerScreen from '../screens/AutoClickerScreen';
 import UnderDevelopmentScreen from '../screens/UnderDevelopmentScreen';
@@ -95,6 +96,11 @@ function GuidesStackNavigator() {
         component={GuideDetailScreen}
         options={{ headerShown: false }}
       />
+      <GuidesStack.Screen
+        name="SearchResults"
+        component={SearchResultsScreen}
+        options={{ headerShown: false }}
+      />
     </GuidesStack.Navigator>
   );
 }
@@ -159,8 +165,8 @@ function AppNavigator() {
           borderTopWidth: 2,
           borderTopColor: '#6FB3F5', // Lighter blue horizontal line at top
           paddingTop: 8,
-          paddingBottom: Math.max(insets.bottom, 8),
-          height: 65 + Math.max(insets.bottom - 5, 0),
+          paddingBottom: Math.max(insets.bottom + 12, 20), // Added extra padding
+          height: 65 + Math.max(insets.bottom + 7, 12),
           elevation: 8,
           shadowColor: '#000',
           shadowOffset: { width: 0, height: -2 },

@@ -21,7 +21,7 @@ function UnderDevelopmentScreen({ title, subtitle }: UnderDevelopmentScreenProps
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
-      <StatusBar barStyle="light-content" backgroundColor={theme.colors.background} />
+      <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
 
       <View style={styles.header}>
         <Text style={styles.title}>

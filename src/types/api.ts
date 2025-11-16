@@ -1,9 +1,20 @@
 // API Types based on Swagger documentation
 
+// Localized text object supporting multiple languages
+export interface LocalizedText {
+  en?: string;
+  fr?: string;
+  ar?: string;
+  it?: string;
+  de?: string;
+  zh?: string;
+  ru?: string;
+}
+
 // Category Schema
 export interface Category {
   _id: string;
-  name: string;
+  name: LocalizedText | string; // Support both new and old format
   description?: string;
   parentCategory?: string | null;
   isActive: boolean;
@@ -15,7 +26,7 @@ export interface Category {
 // Guide Schema
 export interface Guide {
   _id: string;
-  title: string;
+  title: LocalizedText | string; // Support both new and old format
   htmlContent: string;
   category: string; // Category ID reference
   isActive: boolean;

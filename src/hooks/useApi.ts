@@ -10,6 +10,7 @@ export const queryKeys = {
   guides: ['guides'] as const,
   guide: (id: string) => ['guides', id] as const,
   guidesByCategory: (categoryId: string) => ['guides', 'category', categoryId] as const,
+  searchGuides: (query: string) => ['guides', 'search', query] as const,
 };
 
 // Categories Hooks
@@ -78,6 +79,18 @@ export const useGuidesByCategory = (
     queryKey: queryKeys.guidesByCategory(categoryId),
     queryFn: () => apiService.getGuidesByCategory(categoryId),
     enabled: !!categoryId,
+    ...options,
+  });
+};
+
+export const useSearchGuides = (
+  query: string,
+  options?: Omit<UseQueryOptions<Guide[], Error>, 'queryKey' | 'queryFn'>
+) => {
+  return useQuery<Guide[], Error>({
+    queryKey: queryKeys.searchGuides(query),
+    queryFn: () => apiService.searchGuides(query),
+    enabled: !!query && query.length > 0,
     ...options,
   });
 };

@@ -10,7 +10,10 @@
     "restartRequired": "Restart Required",
     "restartMessage": "The app needs to restart to apply the language direction change.",
     "restartNow": "Restart Now",
-    "selectLanguage": "Select Language"
+    "selectLanguage": "Select Language",
+    "search": "Search",
+    "searchPlaceholder": "Search guides...",
+    "error": "Error"
   },
   "onboarding": {
     "slide1": {
@@ -33,7 +36,7 @@
   "guides": {
     "title": "Survival Guides",
     "subtitle": "Build Your Shelter • Survive the Frost",
-    "description": "Essential knowledge for surviving the harsh wasteland. Build, defend, and thrive in the frozen apocalypse.",
+    "description": "Essential knowledge to help your survivors thrive in the eternal winter",
     "sectionTitle": "Survival Knowledge",
     "loadingCategories": "Loading categories...",
     "failedToLoad": "Failed to load categories",
@@ -43,7 +46,13 @@
     "noGuides": "No guides available",
     "loadingGuide": "Loading guide...",
     "failedToLoadGuide": "Failed to load guide",
-    "guideNotFound": "Guide not found"
+    "guideNotFound": "Guide not found",
+    "searchResults": "Search Results",
+    "searching": "Searching...",
+    "noGuidesFound": "No guides found",
+    "tryDifferentKeywords": "Try searching with different keywords",
+    "resultsFound": "results found",
+    "result": "result"
   },
   "tools": {
     "title": "Survival Tools",
@@ -57,7 +66,24 @@
       "permissionStatus": {
         "granted": "Permission Granted",
         "denied": "Permission Required"
-      }
+      },
+      "requiredPermissions": "Required Permissions",
+      "grantOverlayPermission": "Grant Overlay Permission",
+      "overlayPermissionDescription": "Allow app to display over other apps",
+      "enableAccessibility": "Enable Accessibility",
+      "accessibilityDescription": "Required for automatic tapping",
+      "startAutoClicker": "Start Auto Clicker",
+      "startDescription": "Begin automated tapping",
+      "stopAutoClicker": "Stop Auto Clicker",
+      "stopDescription": "End automated tapping",
+      "overlayPermissionRequired": "Permission Required",
+      "overlayPermissionMessage": "Overlay permission is required to show the floating auto clicker button",
+      "grantPermission": "Grant Permission",
+      "cancel": "Cancel",
+      "errorRequestOverlay": "Failed to request overlay permission",
+      "errorOpenSettings": "Failed to open accessibility settings",
+      "errorStartClicker": "Failed to start auto clicker",
+      "errorStopClicker": "Failed to stop auto clicker"
     },
     "blacklistTracker": {
       "title": "Blacklist Tracker",
@@ -78,5 +104,9 @@
     "title": "Under Development",
     "message": "This feature is currently under development and will be available soon!",
     "subtitle": "Stay tuned for updates"
+  },
+  "placeholder": {
+    "underConstruction": "UNDER CONSTRUCTION",
+    "returnToBase": "RETURN TO BASE"
   }
 }

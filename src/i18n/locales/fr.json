@@ -10,7 +10,10 @@
     "restartRequired": "Redémarrage requis",
     "restartMessage": "L'application doit redémarrer pour appliquer le changement de direction de langue.",
     "restartNow": "Redémarrer",
-    "selectLanguage": "Sélectionner la langue"
+    "selectLanguage": "Sélectionner la langue",
+    "search": "Rechercher",
+    "searchPlaceholder": "Rechercher des guides...",
+    "error": "Erreur"
   },
   "onboarding": {
     "slide1": {
@@ -33,7 +36,7 @@
   "guides": {
     "title": "Guides de survie",
     "subtitle": "Construisez votre abri • Survivez au gel",
-    "description": "Connaissances essentielles pour survivre dans les terres désolées. Construisez, défendez et prospérez dans l'apocalypse glacée.",
+    "description": "Connaissances essentielles pour aider vos survivants à prospérer dans l'hiver éternel",
     "sectionTitle": "📖 Connaissances de survie",
     "loadingCategories": "Chargement des catégories...",
     "failedToLoad": "Échec du chargement des catégories",
@@ -43,7 +46,13 @@
     "noGuides": "📭 Aucun guide disponible",
     "loadingGuide": "Chargement du guide...",
     "failedToLoadGuide": "Échec du chargement du guide",
-    "guideNotFound": "📭 Guide introuvable"
+    "guideNotFound": "📭 Guide introuvable",
+    "searchResults": "Résultats de recherche",
+    "searching": "Recherche...",
+    "noGuidesFound": "Aucun guide trouvé",
+    "tryDifferentKeywords": "Essayez de rechercher avec des mots-clés différents",
+    "resultsFound": "résultats trouvés",
+    "result": "résultat"
   },
   "tools": {
     "title": "🛠️ Outils de survie",
@@ -78,5 +87,9 @@
     "title": "🚧 En développement",
     "message": "Cette fonctionnalité est actuellement en développement et sera bientôt disponible !",
     "subtitle": "Restez à l'écoute pour les mises à jour"
+  },
+  "placeholder": {
+    "underConstruction": "EN CONSTRUCTION",
+    "returnToBase": "RETOUR À LA BASE"
   }
 }

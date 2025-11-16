@@ -15,6 +15,7 @@ import { theme } from '../styles/theme';
 import { useGuidesByCategory } from '../hooks/useApi';
 import type { GuidesStackNavigationProp, GuidesStackParamList } from '../types/navigation';
 import type { Guide } from '../types/api';
+import { useLocalizedText } from '../utils/localization';
 
 type CategoryGuidesRouteProp = RouteProp<GuidesStackParamList, 'CategoryGuides'>;
 
@@ -23,13 +24,14 @@ function CategoryGuidesScreen() {
   const navigation = useNavigation<GuidesStackNavigationProp>();
   const route = useRoute<CategoryGuidesRouteProp>();
   const { categoryId, categoryName } = route.params;
+  const getLocalizedText = useLocalizedText();
 
   const { data: guides, isLoading, error, refetch, isRefetching } = useGuidesByCategory(categoryId);
 
   const handleGuidePress = (guide: Guide) => {
     navigation.navigate('GuideDetail', {
       guideId: guide._id,
-      guideTitle: guide.title,
+      guideTitle: getLocalizedText(guide.title),
     });
   };
 
@@ -41,7 +43,7 @@ function CategoryGuidesScreen() {
     >
       <View style={styles.guideContent}>
         <View style={styles.guideInfo}>
-          <Text style={styles.guideTitle}>{item.title}</Text>
+          <Text style={styles.guideTitle}>{getLocalizedText(item.title)}</Text>
         </View>
         <Text style={styles.chevron}>›</Text>
       </View>

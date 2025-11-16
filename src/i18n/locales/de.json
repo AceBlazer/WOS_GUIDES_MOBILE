@@ -10,7 +10,10 @@
     "restartRequired": "Neustart erforderlich",
     "restartMessage": "Die App muss neu gestartet werden, um die Änderung der Sprachrichtung anzuwenden.",
     "restartNow": "Jetzt neu starten",
-    "selectLanguage": "Sprache wählen"
+    "selectLanguage": "Sprache wählen",
+    "search": "Suchen",
+    "searchPlaceholder": "Anleitungen suchen...",
+    "error": "Fehler"
   },
   "onboarding": {
     "slide1": {
@@ -33,7 +36,7 @@
   "guides": {
     "title": "Überlebensführer",
     "subtitle": "Baue deine Unterkunft • Überlebe den Frost",
-    "description": "Wesentliches Wissen zum Überleben im harten Ödland. Baue, verteidige und gedeihe in der gefrorenen Apokalypse.",
+    "description": "Wesentliches Wissen, um deinen Überlebenden zu helfen, im ewigen Winter zu gedeihen",
     "sectionTitle": "📖 Überlebenswissen",
     "loadingCategories": "Lade Kategorien...",
     "failedToLoad": "Kategorien konnten nicht geladen werden",
@@ -43,7 +46,13 @@
     "noGuides": "📭 Keine Anleitungen verfügbar",
     "loadingGuide": "Lade Anleitung...",
     "failedToLoadGuide": "Anleitung konnte nicht geladen werden",
-    "guideNotFound": "📭 Anleitung nicht gefunden"
+    "guideNotFound": "📭 Anleitung nicht gefunden",
+    "searchResults": "Suchergebnisse",
+    "searching": "Suche läuft...",
+    "noGuidesFound": "Keine Anleitungen gefunden",
+    "tryDifferentKeywords": "Versuchen Sie es mit anderen Suchbegriffen",
+    "resultsFound": "Ergebnisse gefunden",
+    "result": "Ergebnis"
   },
   "tools": {
     "title": "🛠️ Überlebenswerkzeuge",
@@ -78,5 +87,9 @@
     "title": "🚧 In Entwicklung",
     "message": "Diese Funktion befindet sich derzeit in der Entwicklung und wird bald verfügbar sein!",
     "subtitle": "Bleiben Sie dran für Updates"
+  },
+  "placeholder": {
+    "underConstruction": "IM BAU",
+    "returnToBase": "ZURÜCK ZUR BASIS"
   }
 }

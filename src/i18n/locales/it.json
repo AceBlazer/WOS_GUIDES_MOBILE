@@ -10,7 +10,10 @@
     "restartRequired": "Riavvio richiesto",
     "restartMessage": "L'app deve riavviarsi per applicare la modifica della direzione della lingua.",
     "restartNow": "Riavvia ora",
-    "selectLanguage": "Seleziona lingua"
+    "selectLanguage": "Seleziona lingua",
+    "search": "Cerca",
+    "searchPlaceholder": "Cerca guide...",
+    "error": "Errore"
   },
   "onboarding": {
     "slide1": {
@@ -33,7 +36,7 @@
   "guides": {
     "title": "Guide di sopravvivenza",
     "subtitle": "Costruisci il tuo rifugio • Sopravvivi al gelo",
-    "description": "Conoscenze essenziali per sopravvivere nella dura terra desolata. Costruisci, difendi e prospera nell'apocalisse ghiacciata.",
+    "description": "Conoscenze essenziali per aiutare i tuoi sopravvissuti a prosperare nell'inverno eterno",
     "sectionTitle": "📖 Conoscenze di sopravvivenza",
     "loadingCategories": "Caricamento categorie...",
     "failedToLoad": "Impossibile caricare le categorie",
@@ -43,7 +46,13 @@
     "noGuides": "📭 Nessuna guida disponibile",
     "loadingGuide": "Caricamento guida...",
     "failedToLoadGuide": "Impossibile caricare la guida",
-    "guideNotFound": "📭 Guida non trovata"
+    "guideNotFound": "📭 Guida non trovata",
+    "searchResults": "Risultati della ricerca",
+    "searching": "Ricerca in corso...",
+    "noGuidesFound": "Nessuna guida trovata",
+    "tryDifferentKeywords": "Prova a cercare con parole chiave diverse",
+    "resultsFound": "risultati trovati",
+    "result": "risultato"
   },
   "tools": {
     "title": "🛠️ Strumenti di sopravvivenza",
@@ -78,5 +87,9 @@
     "title": "🚧 In sviluppo",
     "message": "Questa funzionalità è attualmente in sviluppo e sarà presto disponibile!",
     "subtitle": "Rimani sintonizzato per gli aggiornamenti"
+  },
+  "placeholder": {
+    "underConstruction": "IN COSTRUZIONE",
+    "returnToBase": "RITORNA ALLA BASE"
   }
 }

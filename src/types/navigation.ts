@@ -17,6 +17,9 @@ export type GuidesStackParamList = {
     guideId: string;
     guideTitle: string;
   };
+  SearchResults: {
+    query: string;
+  };
 };
 
 export type ToolsStackParamList = {

@@ -5,15 +5,16 @@ import {
   Text,
   TouchableOpacity,
   ActivityIndicator,
-  ScrollView,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import { WebView } from 'react-native-webview';
 import { useTranslation } from 'react-i18next';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { theme } from '../styles/theme';
 import { useGuide } from '../hooks/useApi';
 import type { GuidesStackNavigationProp, GuidesStackParamList } from '../types/navigation';
+import { useLocalizedText } from '../utils/localization';
 
 type GuideDetailRouteProp = RouteProp<GuidesStackParamList, 'GuideDetail'>;
 
@@ -23,6 +24,7 @@ function GuideDetailScreen() {
   const route = useRoute<GuideDetailRouteProp>();
   const { guideId, guideTitle } = route.params;
   const webViewRef = useRef<WebView>(null);
+  const getLocalizedText = useLocalizedText();
 
   const { data: guide, isLoading, error, refetch } = useGuide(guideId);
 
@@ -193,13 +195,25 @@ function GuideDetailScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <View style={styles.header}>
-        <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => navigation.goBack()}
-        >
-          <Text style={styles.backButtonText}>{t('common.back')}</Text>
-        </TouchableOpacity>
-        <Text style={styles.title} numberOfLines={2}>{guide.title}</Text>
+        <View style={styles.headerTop}>
+          <TouchableOpacity
+            style={styles.backButton}
+            onPress={() => navigation.goBack()}
+          >
+            <Text style={styles.backButtonText}>{t('common.back')}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.refreshButton}
+            onPress={() => refetch()}
+          >
+            <MaterialCommunityIcons
+              name="refresh"
+              size={24}
+              color={theme.colors.primary}
+            />
+          </TouchableOpacity>
+        </View>
+        <Text style={styles.title} numberOfLines={2}>{getLocalizedText(guide.title)}</Text>
       </View>
 
       <WebView
@@ -234,13 +248,23 @@ const styles = StyleSheet.create({
     borderBottomColor: theme.colors.border,
     backgroundColor: theme.colors.backgroundLight,
   },
-  backButton: {
+  headerTop: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     marginBottom: theme.spacing.md,
+  },
+  backButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   backButtonText: {
     fontSize: theme.typography.sizes.lg,
     fontFamily: theme.typography.fontFamily.medium,
     color: theme.colors.primary,
+  },
+  refreshButton: {
+    padding: theme.spacing.xs,
   },
   title: {
     fontSize: theme.typography.sizes.heading,

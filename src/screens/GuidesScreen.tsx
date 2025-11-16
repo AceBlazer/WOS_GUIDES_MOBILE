@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -9,32 +9,45 @@ import {
   ActivityIndicator,
   RefreshControl,
   ImageBackground,
+  TextInput,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { theme } from '../styles/theme';
 import { useCategories } from '../hooks/useApi';
 import CompactLanguageSelector from '../components/CompactLanguageSelector';
 import StrokedText from '../components/StrokedText';
 import type { GuidesStackNavigationProp } from '../types/navigation';
 import type { Category } from '../types/api';
+import { useLocalizedText } from '../utils/localization';
 
 function GuidesScreen() {
   const { t } = useTranslation();
   const navigation = useNavigation<GuidesStackNavigationProp>();
   const { data: categories, isLoading, error, refetch, isRefetching } = useCategories();
+  const [searchQuery, setSearchQuery] = useState('');
+  const getLocalizedText = useLocalizedText();
 
   const handleCategoryPress = (category: Category) => {
     navigation.navigate('CategoryGuides', {
       categoryId: category._id,
-      categoryName: category.name,
+      categoryName: getLocalizedText(category.name),
     });
+  };
+
+  const handleSearch = () => {
+    if (searchQuery.trim().length > 0) {
+      navigation.navigate('SearchResults', {
+        query: searchQuery.trim()
+      });
+    }
   };
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
-      <StatusBar barStyle="light-content" backgroundColor={theme.colors.background} />
+      <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
 
       <View style={styles.header}>
         <View style={styles.headerTop}>
@@ -51,6 +64,42 @@ function GuidesScreen() {
         <Text style={styles.headerDescription}>
           {t('guides.description')}
         </Text>
+
+        <View style={styles.searchContainer}>
+          <View style={styles.searchInputContainer}>
+            <MaterialCommunityIcons
+              name="magnify"
+              size={20}
+              color={theme.colors.textSecondary}
+              style={styles.searchIcon}
+            />
+            <TextInput
+              style={styles.searchInput}
+              placeholder={t('common.searchPlaceholder')}
+              placeholderTextColor={theme.colors.textSecondary}
+              value={searchQuery}
+              onChangeText={setSearchQuery}
+              onSubmitEditing={handleSearch}
+              returnKeyType="search"
+            />
+            {searchQuery.length > 0 && (
+              <TouchableOpacity onPress={() => setSearchQuery('')}>
+                <MaterialCommunityIcons
+                  name="close-circle"
+                  size={20}
+                  color={theme.colors.textSecondary}
+                />
+              </TouchableOpacity>
+            )}
+          </View>
+          <TouchableOpacity
+            style={styles.searchButton}
+            onPress={handleSearch}
+            disabled={searchQuery.trim().length === 0}
+          >
+            <Text style={styles.searchButtonText}>{t('common.search')}</Text>
+          </TouchableOpacity>
+        </View>
       </View>
 
       <ScrollView
@@ -103,7 +152,7 @@ function GuidesScreen() {
                       resizeMode="stretch"
                     >
                       <StrokedText style={styles.buttonText} strokeColor="#0D4D7A" strokeWidth={1}>
-                        {category.name}
+                        {getLocalizedText(category.name)}
                       </StrokedText>
                       {category.description && (
                         <StrokedText style={styles.buttonSubText} strokeColor="#0D4D7A" strokeWidth={1}>
@@ -176,6 +225,47 @@ const styles = StyleSheet.create({
     lineHeight: 18,
     opacity: 0.9,
     paddingHorizontal: theme.spacing.md,
+  },
+  searchContainer: {
+    flexDirection: 'row',
+    marginTop: theme.spacing.lg,
+    gap: theme.spacing.sm,
+    width: '100%',
+  },
+  searchInputContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: theme.colors.backgroundCard,
+    borderRadius: theme.borderRadius.lg,
+    paddingHorizontal: theme.spacing.md,
+    borderWidth: 1,
+    borderColor: theme.colors.border,
+  },
+  searchIcon: {
+    marginRight: theme.spacing.sm,
+  },
+  searchInput: {
+    flex: 1,
+    height: 45,
+    fontSize: theme.typography.sizes.md,
+    fontFamily: theme.typography.fontFamily.regular,
+    color: theme.colors.textPrimary,
+  },
+  searchButton: {
+    backgroundColor: theme.colors.primary,
+    paddingHorizontal: theme.spacing.lg,
+    borderRadius: theme.borderRadius.lg,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: theme.colors.primaryDark,
+  },
+  searchButtonText: {
+    fontSize: theme.typography.sizes.md,
+    fontFamily: theme.typography.fontFamily.bold,
+    fontWeight: theme.typography.weights.bold,
+    color: theme.colors.textInverse,
   },
   content: {
     flex: 1,

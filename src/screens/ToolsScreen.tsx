@@ -29,8 +29,9 @@ function ToolsScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <StatusBar
-        barStyle="dark-content"
-        backgroundColor={theme.colors.background}
+        barStyle="light-content"
+        backgroundColor="transparent"
+        translucent
       />
 
       <View style={styles.header}>
