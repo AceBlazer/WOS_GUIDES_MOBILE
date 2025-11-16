@@ -8,6 +8,7 @@ import {
   FlatList,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { useQueryClient } from '@tanstack/react-query';
 import { changeLanguage } from '../i18n';
 import { updateRTLBasedOnLanguage } from '../utils/rtl';
 import { theme } from '../styles/theme';
@@ -36,6 +37,7 @@ export const CompactLanguageSelector: React.FC<CompactLanguageSelectorProps> = (
   onLanguageChange,
 }) => {
   const { i18n } = useTranslation();
+  const queryClient = useQueryClient();
   const [modalVisible, setModalVisible] = useState(false);
 
   const currentLanguage = LANGUAGES.find(lang => lang.code === i18n.language) || LANGUAGES[0];
@@ -45,6 +47,9 @@ export const CompactLanguageSelector: React.FC<CompactLanguageSelectorProps> = (
       const previousLanguage = i18n.language;
       await changeLanguage(languageCode);
       setModalVisible(false);
+
+      // Invalidate all queries to refetch with new language
+      queryClient.invalidateQueries();
 
       // Check if we need to change RTL direction
       const wasRTL = previousLanguage === 'ar';
